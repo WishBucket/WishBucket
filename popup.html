@@ -1,0 +1,113 @@
+<!doctype html>
+<!--
+ This page is shown when the extension button is clicked, because the
+ "browser_action" field in manifest.json contains the "default_popup" key with
+ value "popup.html".
+ -->
+<html>
+  <head>
+    <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="css/popup.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Getting Started Extension's Popup</title>
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        width: 650px;
+        height: 400px;
+        font-size: 100%;
+      }
+      #status {
+        /* avoid an excessively wide status text */
+        white-space: pre;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 400px;
+      }
+    </style>
+
+    <!--
+      - JavaScript and HTML must be in separate files: see our Content Security
+      - Policy documentation[1] for details and explanation.
+      -
+      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
+     -->
+    <script src="popup.js"></script>
+  </head>
+  <body>
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <div id="wrapper" class="row">
+      <div id="product-column" class="col s8">
+        <div class="col s12 z-depth-1 header-search-wrapper" id="top-bar">
+          <input type="text" name="Search" class="header-search-input z-depth-2" placeholder="Search">
+        </div>
+        <!--New Product Chunk
+        <div id="new-product" >
+          <div class="row">
+            <form class="col s12">
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="password" type="password" class="validate">
+                  <label for="password">Product</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s6">
+                  <input placeholder="Placeholder" id="first_name" type="text" class="validate">
+                  <label for="first_name">Price</label>
+                </div>
+                <div class="input-field col s6">
+                  <input id="last_name" type="text" class="validate">
+                  <label for="last_name">Quantity</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="email" type="email" class="validate">
+                  <label for="email">Comments</label>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      -->
+      </div>
+      <div id="bucket-list" class="col s4 z-depth-3">
+        <ul class="collection">
+          <li class="collection-item bucket">
+            <i class="material-icons circle blue">grade</i>
+            <div class="title">My Birthday!</div>
+          </li>
+          <li class="collection-item bucket selected">
+            <i class="material-icons circle">folder</i>
+            <div class="title">Christmas</div>
+          </li>
+          <li class="collection-item bucket">
+            <i class="material-icons circle green">insert_chart</i>
+            <div class="title">School</div>
+          </li>
+          <li class="collection-item bucket">
+            <i class="material-icons circle red">play_arrow</i>
+            <div class="title">Clothes</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="fixed-action-btn" style="bottom: 24px; right: 29%;">
+    <a class="btn-floating btn-large red">
+      <i class="large material-icons">add</i>
+    </a>
+    <ul>
+      <li><a class="btn-floating red"><i class="material-icons">delete</i></a></li>
+      <li><a class="btn-floating yellow darken-1"><i class="material-icons">local_offer</i></a></li>
+    </ul>
+  </div>
+  </body>
+</html>
