@@ -11,25 +11,13 @@
 #top-bar {
   height: 50px;
   background-color: #af2f2c;
-  padding: 0;
+  padding: 13px;
 }
 /*Search box*/
 .header-search-wrapper {
-  max-width: 824px;
-  width: 100%;
+  width: 90%;
   margin: 0 auto;
-  width: calc(100% - 45%);
-  height: 40px;
-  display: inline-block;
-  margin-left: 240px;
-  position: relative;
-}
-#content .header-search-wrapper {
-  width: 100%;
-  margin: 0 auto;
-  height: 24px;
-  display: inline-block;
-  position: relative;
+  padding: 4px;
 }
 .header-search-wrapper i {
   position: absolute;
@@ -44,13 +32,13 @@
 input.header-search-input {
   display: block;
   padding: 4px;
-  width: 100%;
+  width: 80%;
   background: rgba(255,255,255,0.3);
-  height: 24px;
+  height: 16px;
   -webkit-transition: all 200ms ease;
   transition: all 200ms ease;
   border: none;
-  font-size: 16px;
+  font-size: 14px;
   appearance: textfield;
   font-weight: 400;
   outline: none;
@@ -59,25 +47,25 @@ input.header-search-input {
 .header-search-input::-webkit-input-placeholder
 {
   color:#fff;
-  font-size:16px;
+  font-size:14px;
   font-weight:400
 }
 .header-search-input::-moz-placeholder
 {
   color:#fff;
-  font-size:16px;
+  font-size:14px;
   font-weight:400
 }
 .header-search-input:-ms-input-placeholder
 {
   color:#fff;
-  font-size:16px;
+  font-size:14px;
   font-weight:400
 }
 .header-search-input::placeholder
 {
   color:#fff;
-  font-size:16px;
+  font-size:14px;
   font-weight:400
 }
 
@@ -100,25 +88,25 @@ input.header-search-input:focus {
 .header-search-input:focus::-webkit-input-placeholder
 {
   color:#333;
-  font-size:16px;
+  font-size:14px;
   font-weight:400
 }
 .header-search-input:focus::-moz-placeholder
 {
   color:#333;
-  font-size:16px;
+  font-size:14px;
   font-weight:400
 }
 .header-search-input:focus:-ms-input-placeholder
 {
   color:#333;
-  font-size:16px;
+  font-size:14px;
   font-weight:400
 }
 .header-search-input:focus::placeholder
 {
   color:#333;
-  font-size:16px;
+  font-size:14px;
   font-weight:400
 }
 
@@ -192,4 +180,30 @@ input.header-search-input:focus {
   position: absolute;
   top: 16px;
   right: 16px;
+}
+
+.wishlist-item {
+  height: 162px;
+}
+
+.product-card {
+  width: 100px;
+  height: 96px;
+  display: inline-block;
+  padding: 10px;
+}
+
+.product-image {
+  max-width: 80px;
+  margin: auto;
+}
+
+.product-price {
+  margin: auto;
+  text-align: center;
+}
+
+.product-info {
+  display: inline-block;
+  width: 260px;
 }
