@@ -10,7 +10,7 @@
     "default_popup": "popup.html"
   },
   "content_scripts": [{
-     "js": [ "js/jquery-2.2.0.min.js", "js/materialize.js" ],
+     "js": [ "js/jquery-2.2.0.min.js", "js/materialize.js", "render.js" ],
      "matches": ["http://*/*", "https://*/*"]
   }],
   "permissions": [

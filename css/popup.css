@@ -207,3 +207,15 @@ input.header-search-input:focus {
   display: inline-block;
   width: 260px;
 }
+
+.wishlist-item{
+  display: none;
+}
+
+.header-search-wrapper {
+  display: none;
+}
+
+#new-product .row {
+  margin: 0;
+}
