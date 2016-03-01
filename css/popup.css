@@ -208,14 +208,32 @@ input.header-search-input:focus {
   width: 260px;
 }
 
-.wishlist-item{
+/*.wishlist-item{
   display: none;
 }
 
 .header-search-wrapper {
   display: none;
+}*/
+#new-product {
+  position: fixed;
+  z-index: 1;
+  background-color: #fff;
+  width: 433px;
 }
 
 #new-product .row {
   margin: 0;
+}
+
+#close-product {
+  position: fixed;
+  left: 400px;
+  top: 5px;
+  z-index: 1;
+}
+
+#product-column {
+  height: 400px;
+  overflow: scroll;
 }

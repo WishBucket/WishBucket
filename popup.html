@@ -52,9 +52,12 @@
           <input type="text" name="Search" class="header-search-input z-depth-2" placeholder="Search">
         </div>
         <!--New Product Chunk-->
-        <div id="new-product" >
+        <div id="new-product" class="z-depth-4">
           <div class="row">
             <form class="col s12">
+              <div id="close-product">
+              <i  class="material-icons">clear</i>
+            </div>
               <div class="row">
                 <div class="input-field col s12">
                   <input id="password" type="password" class="validate">
@@ -83,26 +86,12 @@
                 <img src="4352000_sa.jpg" class="product-image" alt="Product Image">
               </div>
               <a class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">keyboard_arrow_right</i></a>
+              <button id="product-submit" class="waves-effect waves-light btn red" type="submit">Add to Bucket</button>
               </div>
             </form>
           </div>
         </div>
-      <div class="wishlist-item">
-        <i class="material-icons">more_vert</i>
-        <i class="material-icons">check_box_outline_blank</i>
-        <div class="card-panel white product-card">
-          <img src="4352000_sa.jpg" class="product-image" alt="Product Image">
-          <div class="product-price">$341.05</div>
-        </div>
-        <div class="product-info">
-          <div class="product-title">Asus 15.6" Laptop - Intel Core i3 -
-4GB Memory - 1TB Hard Drive Black
-X555LA-HI31103J - Best Buy
-          </div>
-          <div class="product-description">Really want to get this before school starts!
-          </div>
-        </div>
-      </div>
+
       </div>
       <div id="bucket-list" class="col s4 z-depth-3">
 
@@ -114,7 +103,7 @@ X555LA-HI31103J - Best Buy
     </a>
     <ul>
       <li><a class="btn-floating red"><i class="material-icons">delete</i></a></li>
-      <li><a class="btn-floating yellow darken-1"><i class="material-icons">local_offer</i></a></li>
+      <li><a id="add-product" class="btn-floating yellow darken-1"><i class="material-icons">local_offer</i></a></li>
     </ul>
   </div>
   </body>
