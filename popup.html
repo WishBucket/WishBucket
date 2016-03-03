@@ -37,7 +37,10 @@
       -
       - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
      -->
+
+    <script src="js/jquery-2.2.0.min.js"></script>
     <script src="popup.js"></script>
+    <script src="js/render.js"></script>
   </head>
   <body>
     <!--Import jQuery before materialize.js-->
@@ -48,72 +51,73 @@
         <div class="col s12 z-depth-1 header-search-wrapper" id="top-bar">
           <input type="text" name="Search" class="header-search-input z-depth-2" placeholder="Search">
         </div>
-        <!--New Product Chunk
-        <div id="new-product" >
+        <!--New Product Chunk-->
+        <div id="new-product" class="z-depth-2">
           <div class="row">
             <form class="col s12">
+              <div id="close-product">
+                <i  class="material-icons">clear</i>
+              </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="password" type="password" class="validate">
-                  <label for="password">Product</label>
+                  <input id="product" type="text" class="validate">
+                  <label for="product">Product</label>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s6">
-                  <input placeholder="Placeholder" id="first_name" type="text" class="validate">
-                  <label for="first_name">Price</label>
+                  <input id="price" type="text" class="validate">
+                  <label for="price">Price</label>
                 </div>
                 <div class="input-field col s6">
-                  <input id="last_name" type="text" class="validate">
-                  <label for="last_name">Quantity</label>
+                  <input id="quantity" type="text" class="validate">
+                  <label for="quantity">Quantity</label>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="email" type="email" class="validate">
-                  <label for="email">Comments</label>
+                  <input id="comments" type="text" class="validate">
+                  <label for="comments">Comments</label>
                 </div>
+              </div>
+              <div class="row">
+                <a class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">keyboard_arrow_left</i></a>
+                <div class="card-panel white product-card">
+                <img src="4352000_sa.jpg" class="product-image" alt="Product Image">
+              </div>
+              <a class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">keyboard_arrow_right</i></a>
+              <button id="product-submit" class="waves-effect waves-light btn red" type="submit">Add to Bucket</button>
               </div>
             </form>
           </div>
         </div>
-      <!---->
-      <div class="wishlist-item">
-        <i class="material-icons">more_vert</i>
-        <i class="material-icons">check_box_outline_blank</i>
-        <div class="card-panel white product-card">
-          <img src="4352000_sa.jpg" class="product-image" alt="Product Image">
-          <div class="product-price">$341.05</div>
-        </div>
-        <div class="product-info">
-          <div class="product-title">Asus 15.6" Laptop - Intel Core i3 -
-4GB Memory - 1TB Hard Drive Black
-X555LA-HI31103J - Best Buy
-          </div>
-          <div class="product-description">Really want to get this before school starts!
-          </div>
-        </div>
-      </div>
+
       </div>
       <div id="bucket-list" class="col s4 z-depth-3">
-        <ul class="collection">
-          <li class="collection-item bucket">
-            <i class="material-icons circle blue">grade</i>
-            <div class="title">My Birthday!</div>
-          </li>
-          <li class="collection-item bucket selected">
-            <i class="material-icons circle">folder</i>
-            <div class="title">Christmas</div>
-          </li>
-          <li class="collection-item bucket">
-            <i class="material-icons circle green">insert_chart</i>
-            <div class="title">School</div>
-          </li>
-          <li class="collection-item bucket">
-            <i class="material-icons circle red">play_arrow</i>
-            <div class="title">Clothes</div>
-          </li>
-        </ul>
+        <div id="new-bucket" class="col s12 z-depth-2">
+          <div id="close-bucket">
+            <i  class="material-icons">clear</i>
+          </div>
+          <div class="input-field row">
+            <input id="bucket_name" type="text" class="validate">
+            <label for="bucket_name">Bucket</label>
+          </div>
+          <div class="five-select row">
+            <a class="btn-floating btn-small waves-effect waves-light red"></a>
+            <a class="btn-floating btn-small waves-effect waves-light purple"></a>
+            <a class="btn-floating btn-small waves-effect waves-light green"></a>
+            <a class="btn-floating btn-small waves-effect waves-light orange"></a>
+            <a class="btn-floating btn-small waves-effect waves-light blue"></a>
+          </div>
+          <div class="five-select row">
+            <a class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">favorite</i></a>
+            <a class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">extension</i></a>
+            <a class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">grade</i></a>
+            <a class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">attach_money</i></a>
+            <a class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">insert_emoticon</i></a>
+          </div>
+          <button id="product-submit" class="waves-effect waves-light btn red" type="submit">Save Bucket</button>
+        </div>
       </div>
     </div>
     <div class="fixed-action-btn" style="bottom: 24px; right: 29%;">
@@ -121,10 +125,9 @@ X555LA-HI31103J - Best Buy
       <i class="large material-icons">add</i>
     </a>
     <ul>
-      <li><a class="btn-floating red"><i class="material-icons">delete</i></a></li>
-      <li><a class="btn-floating yellow darken-1"><i class="material-icons">local_offer</i></a></li>
+      <li><a id="add-bucket" class="btn-floating red"><i class="material-icons">delete</i></a></li>
+      <li><a id="add-product" class="btn-floating yellow darken-1"><i class="material-icons">local_offer</i></a></li>
     </ul>
   </div>
   </body>
 </html>
-<script src="js/storage.js"></script>

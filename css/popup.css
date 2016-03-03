@@ -183,7 +183,8 @@ input.header-search-input:focus {
 }
 
 .wishlist-item {
-  height: 162px;
+  height: 150px;
+  width: 433px;
 }
 
 .product-card {
@@ -206,4 +207,68 @@ input.header-search-input:focus {
 .product-info {
   display: inline-block;
   width: 260px;
+  margin-left: 15px;
+}
+
+/*.wishlist-item{
+  display: none;
+}
+
+.header-search-wrapper {
+  display: none;
+}*/
+#new-product {
+  position: fixed;
+  z-index: 1;
+  background-color: #fff;
+  width: 433px;
+}
+#new-bucket {
+  position: fixed;
+  z-index: 1;
+  background-color: #2d2d2d;
+  width: 216px;
+  padding-bottom: 20px;
+  display: none;
+}
+
+#new-product .row {
+  margin: 0;
+}
+
+#close-product {
+  position: fixed;
+  left: 400px;
+  top: 5px;
+  z-index: 1;
+  cursor: pointer;
+}
+
+#close-bucket {
+  position: fixed;
+  right: 5px;
+  top: 5px;
+  z-index: 1;
+  cursor: pointer;
+  color: #fff;
+}
+
+#product-column {
+  height: 400px;
+  overflow: scroll;
+}
+
+.product-title {
+  font-weight: bold;
+}
+
+.five-select a {
+  height: 30px;
+  width: 30px;
+  margin: 3px;
+  line-height: 30px;
+}
+
+.five-select a i {
+  line-height: 30px;
 }
