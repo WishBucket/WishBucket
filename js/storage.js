@@ -7,18 +7,12 @@
 	var arrBucket = [];
 	
 	//test
+	/*
 	addBucket("tom", "red", "bat");
 	 addBucket("Jerry", "Blue", "cat")
 	var testList = arrBucket;
+	*/
 	
-   s.set({'BucketList': testList}, function(){});
-   //load list of Bucket Names
-   /*
-   s.get('BucketList', function(data){
-	   var bucketNames = data.BucketList;
-	   console.log(bucketNames);
-   });
-   */
    //load list of existing buckets.
    s.get('BucketList', function(data){
 		arrBucket = data.BucketList;
@@ -28,27 +22,6 @@
 	
    
    //****************************************************************
-   function saveChanges() {
-        // Get a value saved in a form.
-        var theValue = 'hello world';
-        // Check that there's some code there.
-        if (!theValue) {
-          console.log('Error: No value specified');
-          return;
-        }
-        // Save it using the Chrome extension storage API.
-        chrome.storage.sync.set({'value': theValue}, function() {
-          // Notify that we saved.
-          console.log('Settings saved');
-        });
-      }
-
-	function getChanges(){
-		var results = '';
-		chrome.storage.sync.get("value", function(data){
-			console.log("data", data);
-		});
-	}
 	
 	/**Adds a bucket to the list of buckets
 	   @param {String} bucketName - name of Bucket
