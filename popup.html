@@ -103,19 +103,50 @@
             <input id="bucket_name" type="text" class="validate">
             <label for="bucket_name">Bucket</label>
           </div>
+          <!-- <fieldset> -->
           <div class="five-select row">
-            <a class="btn-floating btn-small waves-effect waves-light red"></a>
-            <a class="btn-floating btn-small waves-effect waves-light purple"></a>
-            <a class="btn-floating btn-small waves-effect waves-light green"></a>
-            <a class="btn-floating btn-small waves-effect waves-light orange"></a>
-            <a class="btn-floating btn-small waves-effect waves-light blue"></a>
+            <label for="select-red">
+              <input type="radio" value="red" name="color" id="select-red" checked>
+              <span></span>
+            </label>
+            <label for="select-purple">
+              <input type="radio" value="purple" name="color" id="select-purple">
+              <span></span>
+            </label>
+            <label for="select-green">
+              <input type="radio" value="green" name="color" id="select-green">
+              <span></span>
+            </label>
+            <label for="select-orange">
+              <input type="radio" value="orange" name="color" id="select-orange">
+              <span></span>
+            </label>
+            <label for="select-blue">
+              <input type="radio" value="blue" name="color" id="select-blue">
+              <span></span>
+            </label>
           </div>
           <div class="five-select row">
-            <a class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">favorite</i></a>
-            <a class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">extension</i></a>
-            <a class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">grade</i></a>
-            <a class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">attach_money</i></a>
-            <a class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">insert_emoticon</i></a>
+            <label for="select-fav">
+              <input type="radio" value="favorite" name="icon" id="select-fav" checked>
+              <span></span>
+            </label>
+            <label for="select-ext">
+              <input type="radio" value="extension" name="icon" id="select-ext">
+              <span></span>
+            </label>
+            <label for="select-grade">
+              <input type="radio" value="grade" name="icon" id="select-grade">
+              <span></span>
+            </label>
+            <label for="select-money">
+              <input type="radio" value="attach_money" name="icon" id="select-money">
+              <span></span>
+            </label>
+            <label for="select-emoticon">
+              <input type="radio" value="insert_emoticon" name="icon" id="select-emoticon">
+              <span></span>
+            </label>
           </div>
           <button id="product-submit" class="waves-effect waves-light btn red" type="submit">Save Bucket</button>
         </div>

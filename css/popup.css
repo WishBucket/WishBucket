@@ -229,6 +229,7 @@ input.header-search-input:focus {
   background-color: #2d2d2d;
   width: 216px;
   padding-bottom: 20px;
+  padding-top: 20px;
   display: none;
 }
 
@@ -262,6 +263,13 @@ input.header-search-input:focus {
   font-weight: bold;
 }
 
+
+/*new bucket selection*/
+
+#bucket_name {
+  color: #fff;
+}
+
 .five-select a {
   height: 30px;
   width: 30px;
@@ -271,4 +279,71 @@ input.header-search-input:focus {
 
 .five-select a i {
   line-height: 30px;
+}
+
+.five-select [type="radio"] {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px; margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.five-select [type="radio"] + span::before {
+  content: '';
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  margin: 3px;
+  line-height: 30px;
+  vertical-align: -0.25em;
+  border-radius: 50%;
+  transition: 0.25s ease all;
+  background-color: #3f3f3f;
+  color: #fff;
+  text-align: center;
+  font-size: 1.6rem;
+}
+
+.five-select [type="radio"]:checked + span::before {
+  box-shadow: 0 0 0 0.125em #fff;
+}
+
+#select-red[type="radio"] + span::before {
+  background-color: #e51c23;
+}
+
+#select-blue[type="radio"] + span::before {
+  background-color: #2196F3;
+}
+
+#select-orange[type="radio"] + span::before {
+  background-color: #ff9800;
+}
+
+#select-green[type="radio"] + span::before {
+  background-color: #4CAF50;
+}
+
+#select-purple[type="radio"] + span::before {
+  background-color: #9c27b0;
+}
+
+#select-fav[type="radio"] + span::before {
+  content: 'F';
+  line-height: 30px;
+}
+#select-ext[type="radio"] + span::before {
+  content: 'E';
+}
+#select-grade[type="radio"] + span::before {
+  content: 'G';
+}
+#select-money[type="radio"] + span::before {
+  content: 'M';
+}
+#select-emoticon[type="radio"] + span::before {
+  content: 'E';
 }
