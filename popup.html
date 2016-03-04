@@ -22,15 +22,10 @@
         height: 400px;
         font-size: 100%;
       }
-      #status {
-        /* avoid an excessively wide status text */
-        white-space: pre;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        max-width: 400px;
-      }
     </style>
 
+<<<<<<< HEAD
+=======
     <!--
       - JavaScript and HTML must be in separate files: see our Content Security
       - Policy documentation[1] for details and explanation.
@@ -39,9 +34,13 @@
      -->
 
 	<script src="js/storage.js"></script>
+<<<<<<< Updated upstream
+=======
+>>>>>>> origin/master
+>>>>>>> Stashed changes
     <script src="js/jquery-2.2.0.min.js"></script>
-    <script src="popup.js"></script>
     <script src="js/render.js"></script>
+    <script src="js/popup.js"></script>
   </head>
   <body>
     <!--Import jQuery before materialize.js-->
@@ -82,11 +81,11 @@
                 </div>
               </div>
               <div class="row">
-                <a class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">keyboard_arrow_left</i></a>
+                <a id="left_but" class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">keyboard_arrow_left</i></a>
                 <div class="card-panel white product-card">
-                <img src="4352000_sa.jpg" class="product-image" alt="Product Image">
+                <img id="prod_img" class="product-image" alt="Product Image">
               </div>
-              <a class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">keyboard_arrow_right</i></a>
+              <a id="right_but" class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">keyboard_arrow_right</i></a>
               <button id="product-submit" class="waves-effect waves-light btn red" type="submit">Add to Bucket</button>
               </div>
             </form>
