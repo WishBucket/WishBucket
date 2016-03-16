@@ -27,6 +27,8 @@ chrome.runtime.onMessage.addListener(function(message) {
     if(message.method == "gotImages") {
                                      
         pictures = message.images;
+        
+        document.getElementById('product').value = message.message;
                                      
         if(pictures[0] != null) {
                                      
