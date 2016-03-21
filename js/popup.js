@@ -32,6 +32,8 @@ chrome.runtime.onMessage.addListener(function(message) {
         
         document.getElementById('price').value = message.cost;
                                      
+        document.getElementById('quantity').value = message.number;
+                                     
         if(pictures[0] != null) {
                                      
             document.getElementById('prod_img').src = pictures[0];

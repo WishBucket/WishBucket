@@ -3,6 +3,8 @@ var pictures = [];
 var area = document.getElementById('leftCol');
 var title = document.getElementById('productTitle').innerHTML;
 var price =  document.getElementById('priceblock_ourprice');
+var qlist = document.getElementById('quantity');
+var quant = qlist.options[qlist.selectedIndex].text;
 
 if(price == null) {
     price = document.getElementById('priceblock_saleprice');
@@ -18,7 +20,7 @@ price = price.replace(/\s+/g, '');
 
 findImages(area);
 
-chrome.runtime.sendMessage({method:"gotImages",images:pictures, message:title, cost:price});
+chrome.runtime.sendMessage({method:"gotImages",images:pictures, message:title, cost:price, number:quant});
 
 function findImages(elem){
     if(elem.children.length == 0) {
