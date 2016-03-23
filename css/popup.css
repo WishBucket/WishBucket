@@ -192,6 +192,7 @@ input.header-search-input:focus {
   height: 96px;
   display: inline-block;
   padding: 10px;
+  vertical-align: middle;
 }
 
 .product-image {
