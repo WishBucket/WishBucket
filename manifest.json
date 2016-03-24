@@ -13,6 +13,10 @@
      "js": [ "js/imagescript.js" ],
      "matches": ["http://*/*", "https://*/*"]
   }],
+  "icons": {
+  		"48": "icon48.png",
+  		"128": "icon128.png"},
+  
   "permissions": [
 	"storage",
     "activeTab",
