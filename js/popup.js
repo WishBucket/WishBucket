@@ -3,7 +3,7 @@ var index = 0;
 var pictures;
 
 document.addEventListener('DOMContentLoaded', function() {
-                          
+    
     chrome.tabs.executeScript({file:"js/imagescript.js"});
     
     document.getElementById("left_but").addEventListener('click', function() {
