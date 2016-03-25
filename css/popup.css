@@ -182,6 +182,10 @@ input.header-search-input:focus {
   right: 16px;
 }
 
+.checkbox {
+  cursor: pointer;
+}
+
 .wishlist-item {
   height: 150px;
   width: 433px;
@@ -333,18 +337,27 @@ input.header-search-input:focus {
 }
 
 #select-fav[type="radio"] + span::before {
-  content: 'F';
-  line-height: 30px;
+  content: '';
+  background: url('../ic_favorite_white-01.png') no-repeat center center;
+  background-size: 22px;
 }
 #select-ext[type="radio"] + span::before {
-  content: 'E';
+  content: '';
+  background: url('../ic_favorite_white-01.png') no-repeat center center;
+  background-size: 22px;
 }
 #select-grade[type="radio"] + span::before {
-  content: 'G';
+  content: '';
+  background: url('../ic_favorite_white-01.png') no-repeat center center;
+  background-size: 22px;
 }
 #select-money[type="radio"] + span::before {
-  content: 'M';
+  content: '';
+  background: url('../ic_favorite_white-01.png') no-repeat center center;
+  background-size: 22px;
 }
 #select-emoticon[type="radio"] + span::before {
-  content: 'E';
+  content: '';
+  background: url('../ic_favorite_white-01.png') no-repeat center center;
+  background-size: 22px;
 }

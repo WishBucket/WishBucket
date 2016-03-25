@@ -5,14 +5,14 @@
 			this.quantity = quantity;
 			this.productName = productName;
 			this.comment = comment;
-			
-			
+
+
 			//object behavior
 			this.getUrl = function(){
 				return this.url;
 			};
 			this.setUrl = function(url){
-				this.url = url;	
+				this.url = url;
 			};
 			this.getPrice = function(){
 				return this.price;
@@ -46,7 +46,7 @@
 		this.color = color;
 		this.icon = icon;
 		this.products = new Array();
-		
+
 		//Bucket Behavior
 		this.getName = function(){
 			return 	this.name;
@@ -75,7 +75,7 @@
 			@param {Int} quantity - quantity of object
 			@param {String} productName - Name of product
 			@param {String} comment - Description of product
-			
+
 			@return {Product} - product created
 		*/
 		this.addProduct = function(url, price, quantity, productName, comment){
@@ -83,7 +83,7 @@
 			this.products.push(temp);
 			return temp;
 		};
-		
+
 		this.getProduct = function(product){
 			return this.products.find(product);
 		};
@@ -93,7 +93,7 @@
 				return this.products.splice(index, 1);
 			}
 			else{
-				console.log("Can't remove product; not found in array");	
+				console.log("Can't remove product; not found in array");
 			}
 		};
 		this.addProductList = function(productList){
@@ -106,14 +106,15 @@
 
 //Global variable initialization
    var s = chrome.storage.sync;
+	 var loadComplete = false;
 	//array of Buckets
 	var arrBucket = [];
-	
+
 	//test code
-	addBucket("tom", "red", "bat");
-	addBucket("Jerry", "Blue", "cat");
-	
-	arrBucket[0].addProduct("url", 280.57, 2, "couch", "its alright");
+	addBucket("tom", "red", "account_balance");
+	addBucket("Jerry", "blue", "grade");
+
+	arrBucket[0].addProduct("www.amazon.com", 280.57, 2, "couch", "its alright");
 	arrBucket[1].addProduct("url", 10.27, 1, "Steak", "Online meat seams like a good idea");
 	arrBucket[1].addProduct("url", 12.92, 5, "Camera", "Super cheap");
 	saveChanges();
@@ -123,36 +124,37 @@
    s.get('BucketList', function(data){
 		arrBucket = data.BucketList;
 
-		bucketify();
+		//bucketify();
 		console.log(arrBucket);
+		loadComplete = true;
 	});
-	
-   
+
+
    //****************************************************************
-	
+
 	/**Adds a bucket to the list of buckets
 	   @param {String} bucketName - name of Bucket
 	   @param {color} color - color of bucket
 	   @param {icon} icon - icon that represents bucket
 	*/
 	function addBucket(bucketName, color, icon){
-		
+
 		//declares Bucket object
-		var bucket = new Bucket(bucketName, color, icon);	
+		var bucket = new Bucket(bucketName, color, icon);
 		arrBucket.push(bucket);
 
 	}
 	/**Returns a list of buckets
-		
+
 	*/
 	function getBuckets(){
 		return arrBucket;
 	}
-	
+
 	function saveChanges(){
 		s.set({'BucketList': arrBucket}, function(){});
 	}
-	
+
 	function bucketify(){
 		try{
 			if(arrBucket != null){
@@ -163,29 +165,27 @@
 					arrBucket.splice(i, 1, temp);
 				}
 			}
-			
+
 		}
 		catch(err){
 			console.log(err + " :error in bucketify(). Check that arrBucket is computable");
 		}
-		
+
 	}
-	
+
 	function clearMem(){
-		s.clear();	
+		s.clear();
 	}
-	
+
 	function removeBucket(bucket){
 			try{
 				if(arrBucket.length == 0){
-					console.log("No buckets in the array to remove");	
+					console.log("No buckets in the array to remove");
 				}
 				var index = arrBucket.indexOf(bucket);
 				arrBucket.splice(index, 1);
 			}
 			catch(err){
-				console.log(err + " :arrBucket object is null or non computable");	
-			}	
+				console.log(err + " :arrBucket object is null or non computable");
+			}
 	}
-
-	

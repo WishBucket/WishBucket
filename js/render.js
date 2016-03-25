@@ -1,44 +1,21 @@
 var obj = jQuery.parseJSON( '{ "Buckets" : [ { "Title" : "School", "Color" : "green", "Icon" : "account_balance"},{ "Title" : "Family", "Color" : "pink", "Icon" : "grade"},{ "Title" : "Family", "Color" : "red", "Icon" : "grade"},{ "Title" : "Family", "Color" : "blue", "Icon" : "grade"},{ "Title" : "Family", "Color" : "red", "Icon" : "grade"},{ "Title" : "Family", "Color" : "red", "Icon" : "grade"},{ "Title" : "Clothes", "Color" : "orange", "Icon" : "favorite"}]}' );
 
-$.getJSON(chrome.extension.getURL('/testData.json'), function(data) {
-  console.log(data);
-
-  var items = data.items.map(function (item) {
-    return item.key + ': ' + item.value;
-  });
-  showData.empty();
-
-if (items.length) {
-  var content = '<li>' + items.join('</li><li>') + '</li>';
-  var list = $('<ul />').html(content);
-  showData.append(list);
-}
-});
+var buckets = getBuckets();
+var curBucket = 0;
 
 $(document).ready(function(){
-  var collection = document.createElement("ul");
-  $(collection).addClass("collection")
-  for (i = 0; i < obj.Buckets.length; i++) {
-    var title = obj.Buckets[i].Title;
-    var color = obj.Buckets[i].Color;
-    var icon = obj.Buckets[i].Icon;
-    $(collection).append('<li class="collection-item bucket"><i class="material-icons circle ' + color + '">' + icon + '</i><div class="title">' + title +'</div></li>');
-  }
-  $("#bucket-list").append(collection);
 
-  for (i = 0; i < 6; i++) {
-    var item = document.createElement("div");
-    $(item).addClass("wishlist-item");
-    $(item).addClass("valign-wrapper");
-    $(item).append('<i class="material-icons valign">more_vert</i><i class="material-icons valign">check_box_outline_blank</i><div class="card-panel white product-card valign"><img src="4352000_sa.jpg" class="product-image" alt="Product Image"><div class="product-price">$341.05</div></div><div class="product-info valign"><div class="product-title">Asus 15.6" Laptop - Intel Core i3 - 4GB Memory - 1TB Hard Drive Black X555LA-HI31103J - Best Buy</div><div class="product-description">Really want to get this before school starts!</div></div>');
-    $("#product-column").append(item);
-  }
+  renderBuckets(buckets);
+  renderProducts(buckets[curBucket].products);
+
   $("#close-product").click(function(){
     $("#new-product").slideUp();
   });
 
   $("#add-product").click(function(){
     $("#new-product").slideDown();
+    buckets[curBucket].addProduct("url", 12.92, 5, "Camera", "Super cheap");
+    renderProducts(buckets[curBucket].products)
   });
 
   $("#close-bucket").click(function(){
@@ -47,8 +24,41 @@ $(document).ready(function(){
 
   $("#add-bucket").click(function(){
     $("#new-bucket").slideDown();
+    //$("#product-submit").click(function(){
+      saveChanges();
+      addBucket("New Bucket", "green", "favorite");
+      buckets = getBuckets();
+      renderBuckets(buckets);
+    //});
   });
 
+  $(".checkbox").click(function(){
+    if ($(this).text() == "check_box_outline_blank") {
+      $(this).text("check_box");
+      //call something
+    } else {
+      $(this).text("check_box_outline_blank");
+      //call something else...
+    }
+
+  })
+});
+
+function renderBuckets(buckets){
+  $("#buckets").empty();
+  var collection = document.createElement("ul");
+  $(collection).addClass("collection")
+  for (i = 0; i < buckets.length; i++) {
+    var title = buckets[i].name;
+    var color = buckets[i].color;
+    var icon = buckets[i].icon;
+    if (i == 0) {
+      $(collection).append('<li class="collection-item bucket selected ' + color + '"><i class="material-icons circle">' + icon + '</i><div class="title">' + title +'</div></li>');
+    } else {
+      $(collection).append('<li class="collection-item bucket"><i class="material-icons circle ' + color + '">' + icon + '</i><div class="title">' + title +'</div></li>');
+    }
+  }
+  $("#buckets").append(collection);
   $(".bucket").click(function(){
     var circle = $(this).find("i");
     var classes = (circle.attr("class"));
@@ -68,5 +78,30 @@ $(document).ready(function(){
       }
     });
     // call render
+    var name = $(this).find(".title")[0].innerHTML;
+    for (i = 0; i < buckets.length; i++) {
+      if (buckets[i].name == name) {
+        curBucket = i;
+        renderProducts(buckets[i].products);
+      }
+    }
   });
-});
+}
+
+function renderProducts(productList){
+  $("#product-list").empty();
+  if (productList.length > 0) {
+    for (j = 0; j < productList.length; j++) {
+      var product = productList[j];
+      var item = document.createElement("div");
+      $(item).addClass("wishlist-item");
+      $(item).addClass("valign-wrapper");
+      $(item).append('<i class="material-icons valign">more_vert</i><i class="material-icons valign checkbox">check_box_outline_blank</i><div class="card-panel white product-card valign"><img src="4352000_sa.jpg" class="product-image" alt="Product Image"><div class="product-price">$'+ product.price +'</div></div><div class="product-info valign"><div class="product-title">'+ product.productName +'</div><div class="product-description">'+ product.comment +'</div></div>');
+      $("#product-list").append(item);
+    }
+  } else {
+    var item = document.createElement("div");
+    item.innerHTML = "empty";
+    $("#product-list").append(item);
+  }
+}
