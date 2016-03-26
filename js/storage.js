@@ -79,26 +79,52 @@
 			@return {Product} - product created
 		*/
 		this.addProduct = function(url, price, quantity, productName, comment){
-			var temp = new Product(url, price, quantity, productName, comment)
-			this.products.push(temp);
-			return temp;
+			try{
+				//check that varaibles are defined
+				if(typeof url != 'undefined' && typeof price != 'undefined' && typeof quantity != 'undefined' && typeof productName != 'undefined' && typeof comment != 'undefined'){
+					//checks that quanitity is a number
+					//Does not check price because price could exist as a string depending on implementation
+					if(!isNaN(quantity)){
+						var temp = new Product(url, price, quantity, productName, comment)
+						this.products.push(temp);
+						return temp;
+					}
+				}
+			}
+			catch(err){
+				console.log("Error: " + err + " in addProduct function");
+			}
+			
 		};
 
 		this.getProduct = function(product){
 			return this.products.find(product);
 		};
+		/**Removes product from productList
+		
+			@param {Product} - product to be removed
+			@return - the product removed, or null if no product removed		
+		*/
 		this.removeProduct = function(product){
-			var index = this.products.indexOf(product)
-			if(index == -1){
-				return this.products.splice(index, 1);
-			}
-			else{
-				console.log("Can't remove product; not found in array");
-			}
+			if(typeof product != 'undefined'){
+				var index = this.products.indexOf(product)
+				if(index != -1){
+					return this.products.splice(index, 1);
+				}
+				else{
+					return null;
+				}	
+			}		
 		};
+		/*Adds a new Product List
+		  @param {Array} - list of Products
+		*/
 		this.addProductList = function(productList){
 			this.products = productList;
 		};
+		/*Removes all products from the Bucket
+		
+		*/
 		this.clearProducts = function(){
 			this.products = {};
 		};
@@ -150,11 +176,18 @@
 	function getBuckets(){
 		return arrBucket;
 	}
-
+	/*Saves changes to arrBucket. Must be called before session
+	  closes in order to make changes permanent
+	*/
 	function saveChanges(){
 		s.set({'BucketList': arrBucket}, function(){});
 	}
 
+	/*Makes array arrBucket into an array of Bucket objects
+	  after being loaded. If this is not called then the 
+	  objects loaded will be plain Objects with only the 
+	  properties of the Bucket, but not the behavior.
+	*/
 	function bucketify(){
 		try{
 			if(arrBucket != null){
@@ -173,17 +206,30 @@
 
 	}
 
+	/*Clears all objects from memory.
+	
+	*/
 	function clearMem(){
 		s.clear();
 	}
-
+	
+	/*Removes a bucket from arrBucket.
+	  
+	  @param {Bucket} - Bucket to be removed
+	  @return - removed Bucket or null if Bucket could not be removed
+	*/
 	function removeBucket(bucket){
 			try{
 				if(arrBucket.length == 0){
 					console.log("No buckets in the array to remove");
 				}
 				var index = arrBucket.indexOf(bucket);
-				arrBucket.splice(index, 1);
+				if(index != -1){
+					return arrBucket.splice(index, 1);
+				}
+				else{
+					return null;	
+				}
 			}
 			catch(err){
 				console.log(err + " :arrBucket object is null or non computable");
