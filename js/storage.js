@@ -40,7 +40,7 @@
 			};
 	}
 
-//Prototype Buckey Object
+//Prototype Bucket Object
 	function Bucket(name, color, icon){
 		this.name = name;
 		this.color = color;
@@ -94,16 +94,16 @@
 			catch(err){
 				console.log("Error: " + err + " in addProduct function");
 			}
-			
+
 		};
 
 		this.getProduct = function(product){
 			return this.products.find(product);
 		};
 		/**Removes product from productList
-		
+
 			@param {Product} - product to be removed
-			@return - the product removed, or null if no product removed		
+			@return - the product removed, or null if no product removed
 		*/
 		this.removeProduct = function(product){
 			if(typeof product != 'undefined'){
@@ -113,8 +113,8 @@
 				}
 				else{
 					return null;
-				}	
-			}		
+				}
+			}
 		};
 		/*Adds a new Product List
 		  @param {Array} - list of Products
@@ -123,7 +123,7 @@
 			this.products = productList;
 		};
 		/*Removes all products from the Bucket
-		
+
 		*/
 		this.clearProducts = function(){
 			this.products = {};
@@ -140,9 +140,9 @@
 	addBucket("tom", "red", "account_balance");
 	addBucket("Jerry", "blue", "grade");
 
-	arrBucket[0].addProduct("www.amazon.com", 280.57, 2, "couch", "its alright");
-	arrBucket[1].addProduct("url", 10.27, 1, "Steak", "Online meat seams like a good idea");
-	arrBucket[1].addProduct("url", 12.92, 5, "Camera", "Super cheap");
+	arrBucket[0].addProduct("http://ecx.images-amazon.com/images/I/31IGXQAOw8L.jpg", 24.99, 2, "Canon ES71II Lens Hood for EF 50mm f/1.4 SLR Lens", "its alright");
+	arrBucket[1].addProduct("http://ecx.images-amazon.com/images/I/51Lo6eQGclL.jpg", 10.27, 1, "Steak", "Online meat seams like a good idea");
+	arrBucket[1].addProduct("http://ecx.images-amazon.com/images/I/91J4beN4sEL._SX522_.jpg", 12.92, 5, "Camera", "Super cheap");
 	saveChanges();
    //load list of existing buckets.
 
@@ -184,8 +184,8 @@
 	}
 
 	/*Makes array arrBucket into an array of Bucket objects
-	  after being loaded. If this is not called then the 
-	  objects loaded will be plain Objects with only the 
+	  after being loaded. If this is not called then the
+	  objects loaded will be plain Objects with only the
 	  properties of the Bucket, but not the behavior.
 	*/
 	function bucketify(){
@@ -207,14 +207,14 @@
 	}
 
 	/*Clears all objects from memory.
-	
+
 	*/
 	function clearMem(){
 		s.clear();
 	}
-	
+
 	/*Removes a bucket from arrBucket.
-	  
+
 	  @param {Bucket} - Bucket to be removed
 	  @return - removed Bucket or null if Bucket could not be removed
 	*/
@@ -228,7 +228,7 @@
 					return arrBucket.splice(index, 1);
 				}
 				else{
-					return null;	
+					return null;
 				}
 			}
 			catch(err){

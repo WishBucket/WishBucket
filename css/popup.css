@@ -193,7 +193,7 @@ input.header-search-input:focus {
 
 .product-card {
   width: 100px;
-  height: 96px;
+  height: auto;
   display: inline-block;
   padding: 10px;
   vertical-align: middle;
@@ -201,6 +201,7 @@ input.header-search-input:focus {
 
 .product-image {
   max-width: 80px;
+  max-height: 80px;
   margin: auto;
 }
 
@@ -271,7 +272,7 @@ input.header-search-input:focus {
 
 /*new bucket selection*/
 
-#bucket_name {
+#bucket-name {
   color: #fff;
 }
 
@@ -343,21 +344,21 @@ input.header-search-input:focus {
 }
 #select-ext[type="radio"] + span::before {
   content: '';
-  background: url('../ic_favorite_white-01.png') no-repeat center center;
+  background: url('../ic_extension_white-01.png') no-repeat center center;
   background-size: 22px;
 }
 #select-grade[type="radio"] + span::before {
   content: '';
-  background: url('../ic_favorite_white-01.png') no-repeat center center;
+  background: url('../ic_grade_white-01.png') no-repeat center center;
   background-size: 22px;
 }
 #select-money[type="radio"] + span::before {
   content: '';
-  background: url('../ic_favorite_white-01.png') no-repeat center center;
+  background: url('../ic_attach_money_white-01.png') no-repeat center center;
   background-size: 22px;
 }
 #select-emoticon[type="radio"] + span::before {
   content: '';
-  background: url('../ic_favorite_white-01.png') no-repeat center center;
+  background: url('../ic_insert_emoticon_white-01.png') no-repeat center center;
   background-size: 22px;
 }

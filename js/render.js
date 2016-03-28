@@ -1,5 +1,3 @@
-var obj = jQuery.parseJSON( '{ "Buckets" : [ { "Title" : "School", "Color" : "green", "Icon" : "account_balance"},{ "Title" : "Family", "Color" : "pink", "Icon" : "grade"},{ "Title" : "Family", "Color" : "red", "Icon" : "grade"},{ "Title" : "Family", "Color" : "blue", "Icon" : "grade"},{ "Title" : "Family", "Color" : "red", "Icon" : "grade"},{ "Title" : "Family", "Color" : "red", "Icon" : "grade"},{ "Title" : "Clothes", "Color" : "orange", "Icon" : "favorite"}]}' );
-
 var buckets = getBuckets();
 var curBucket = 0;
 
@@ -14,8 +12,6 @@ $(document).ready(function(){
 
   $("#add-product").click(function(){
     $("#new-product").slideDown();
-    buckets[curBucket].addProduct("url", 12.92, 5, "Camera", "Super cheap");
-    renderProducts(buckets[curBucket].products)
   });
 
   $("#close-bucket").click(function(){
@@ -24,24 +20,32 @@ $(document).ready(function(){
 
   $("#add-bucket").click(function(){
     $("#new-bucket").slideDown();
-    //$("#product-submit").click(function(){
-      saveChanges();
-      addBucket("New Bucket", "green", "favorite");
-      buckets = getBuckets();
-      renderBuckets(buckets);
-    //});
   });
 
-  $(".checkbox").click(function(){
-    if ($(this).text() == "check_box_outline_blank") {
-      $(this).text("check_box");
-      //call something
-    } else {
-      $(this).text("check_box_outline_blank");
-      //call something else...
-    }
+  $("#bucket-submit").click(function(){
+    saveChanges();
+    var bucketName = $('#bucket-name').val();
+    var color = $("input[name=color]:checked").val()
+    var icon = $("input[name=icon]:checked").val()
+    addBucket(bucketName, color, icon);
+    buckets = getBuckets();
+    renderBuckets(buckets);
+    $('#bucket-name').val("");
+    $("#new-bucket").slideUp();
+  });
 
-  })
+  $("#product-add").click(function(){
+    saveChanges();
+    var productName = $('#product').val();
+    var productPrice = $('#price').val();
+    var productQuantity = $('#quantity').val();
+    var productComment = $('#comments').val();
+    var imgURL = $('#prod_img').attr('src');
+    buckets[curBucket].addProduct(imgURL, productPrice, productQuantity, productName, productComment);
+    renderProducts(buckets[curBucket].products);
+    $("#new-product").slideUp();
+  });
+
 });
 
 function renderBuckets(buckets){
@@ -96,7 +100,7 @@ function renderProducts(productList){
       var item = document.createElement("div");
       $(item).addClass("wishlist-item");
       $(item).addClass("valign-wrapper");
-      $(item).append('<i class="material-icons valign">more_vert</i><i class="material-icons valign checkbox">check_box_outline_blank</i><div class="card-panel white product-card valign"><img src="4352000_sa.jpg" class="product-image" alt="Product Image"><div class="product-price">$'+ product.price +'</div></div><div class="product-info valign"><div class="product-title">'+ product.productName +'</div><div class="product-description">'+ product.comment +'</div></div>');
+      $(item).append('<i class="material-icons valign">more_vert</i><i class="material-icons valign checkbox">check_box_outline_blank</i><div class="card-panel white product-card valign"><img src="' + product.url + '" class="product-image" alt="Product Image"><div class="product-price">$'+ product.price +'</div></div><div class="product-info valign"><div class="product-title">'+ product.productName +'</div><div class="product-description">'+ product.comment +'</div></div>');
       $("#product-list").append(item);
     }
   } else {
@@ -104,4 +108,13 @@ function renderProducts(productList){
     item.innerHTML = "empty";
     $("#product-list").append(item);
   }
+  $(".checkbox").click(function(){
+    if ($(this).text() == "check_box_outline_blank") {
+      $(this).text("check_box");
+      //call something
+    } else {
+      $(this).text("check_box_outline_blank");
+      //call something else...
+    }
+  });
 }
