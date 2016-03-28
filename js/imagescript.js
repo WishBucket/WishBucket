@@ -4,7 +4,14 @@ var area = document.getElementById('leftCol'); // Page area that contains produc
 var title = document.getElementById('productTitle').innerHTML; // Product name
 var price =  document.getElementById('priceblock_ourprice'); // First attempt to find price
 var qlist = document.getElementById('quantity'); // Quantity dropdown
-var quant = qlist.options[qlist.selectedIndex].text; // Selected quantity
+var quant;
+
+if(qlist != null) {
+  quant = qlist.options[qlist.selectedIndex].text; // Selected quantity
+}
+else {
+  quant = 1;
+}
 
 // If price wasn't found on first attempt, try, try again
 if(price == null) {
@@ -30,7 +37,7 @@ chrome.runtime.sendMessage({method:"gotImages",images:pictures, message:title, c
 // Recursively go through each element and find all images of a reasonable size
 function findImages(elem){
     if(elem.children.length == 0) {
-        if(elem.nodeName.toLowerCase() === 'img' && elem.width > 70 && elem.height > 70) {
+        if(elem.nodeName.toLowerCase() === 'img' && elem.width > 40 && elem.height > 40) {
             pictures.push(elem.src);
         }
     }
