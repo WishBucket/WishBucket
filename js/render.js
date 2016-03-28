@@ -1,10 +1,15 @@
-var buckets = getBuckets();
+var buckets = [];
+$.when($.ajax(buckets = loadBucket())).then(function () {
+  console.log(loadComplete);
+  //buckets = getBuckets();
+   render();
+
+});
+console.log("loadBucket type: " + typeof loadBucket());
 var curBucket = 0;
 
 $(document).ready(function(){
 
-  renderBuckets(buckets);
-  renderProducts(buckets[curBucket].products);
 
   $("#close-product").click(function(){
     $("#new-product").slideUp();
@@ -23,7 +28,7 @@ $(document).ready(function(){
   });
 
   $("#bucket-submit").click(function(){
-    saveChanges();
+    //saveChanges();
     var bucketName = $('#bucket-name').val();
     var color = $("input[name=color]:checked").val()
     var icon = $("input[name=icon]:checked").val()
@@ -32,10 +37,11 @@ $(document).ready(function(){
     renderBuckets(buckets);
     $('#bucket-name').val("");
     $("#new-bucket").slideUp();
+    saveChanges();
   });
 
   $("#product-add").click(function(){
-    saveChanges();
+    //saveChanges();
     var productName = $('#product').val();
     var productPrice = $('#price').val();
     var productQuantity = $('#quantity').val();
@@ -44,6 +50,7 @@ $(document).ready(function(){
     buckets[curBucket].addProduct(imgURL, productPrice, productQuantity, productName, productComment);
     renderProducts(buckets[curBucket].products);
     $("#new-product").slideUp();
+    //saveChanges();
   });
 
 });
@@ -90,6 +97,14 @@ function renderBuckets(buckets){
       }
     }
   });
+}
+
+function render () {
+  buckets = getBuckets();
+  if (buckets.length > 0){
+    renderBuckets(buckets);
+    renderProducts(buckets[curBucket].products);
+  }
 }
 
 function renderProducts(productList){

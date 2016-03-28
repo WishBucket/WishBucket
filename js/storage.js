@@ -137,23 +137,29 @@
 	var arrBucket = [];
 
 	//test code
-	addBucket("tom", "red", "account_balance");
-	addBucket("Jerry", "blue", "grade");
+	// addBucket("tom", "red", "account_balance");
+	// addBucket("Jerry", "blue", "grade");
+	//
 
-	arrBucket[0].addProduct("http://ecx.images-amazon.com/images/I/31IGXQAOw8L.jpg", 24.99, 2, "Canon ES71II Lens Hood for EF 50mm f/1.4 SLR Lens", "its alright");
-	arrBucket[1].addProduct("http://ecx.images-amazon.com/images/I/51Lo6eQGclL.jpg", 10.27, 1, "Steak", "Online meat seams like a good idea");
-	arrBucket[1].addProduct("http://ecx.images-amazon.com/images/I/91J4beN4sEL._SX522_.jpg", 12.92, 5, "Camera", "Super cheap");
-	saveChanges();
+	// arrBucket[1].addProduct("http://ecx.images-amazon.com/images/I/51Lo6eQGclL.jpg", 10.27, 1, "Steak", "Online meat seams like a good idea");
+	// arrBucket[1].addProduct("http://ecx.images-amazon.com/images/I/91J4beN4sEL._SX522_.jpg", 12.92, 5, "Camera", "Super cheap");
+	// saveChanges();
    //load list of existing buckets.
 
 	//clearMem();
-   s.get('BucketList', function(data){
-		arrBucket = data.BucketList;
+	loadBucket();
+	function loadBucket(){
+		return s.get('BucketList', function(data){
+		 arrBucket = data.BucketList;
+		 bucketify();
+		 console.log(arrBucket);
+		 loadComplete = true;
+		 	 arrBucket[0].addProduct("http://ecx.images-amazon.com/images/I/31IGXQAOw8L.jpg", 24.99, 2, "Canon ES71II Lens Hood for EF 50mm f/1.4 SLR Lens", "its alright");
+		 return arrBucket;
+	 });
+	}
 
-		//bucketify();
-		console.log(arrBucket);
-		loadComplete = true;
-	});
+
 
 
    //****************************************************************
