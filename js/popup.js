@@ -1,11 +1,15 @@
 
+// Image index and array
 var index = 0;
 var pictures;
 
+// Wait for page to load
 document.addEventListener('DOMContentLoaded', function() {
     
+    // Inject script
     chrome.tabs.executeScript({file:"js/imagescript.js"});
     
+    // Attach listener to scroll through images
     document.getElementById("left_but").addEventListener('click', function() {
   
         if(index == 0) {
@@ -17,22 +21,27 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('prod_img').src = pictures[index];
     });
 
+    // Attach another listener to scroll other direction
     document.getElementById("right_but").addEventListener('click', function() {
         index = (index + 1) % pictures.length;
         document.getElementById('prod_img').src = pictures[index];
     });
 });
 
+// Wait for content script to return info, then enter it into product page
 chrome.runtime.onMessage.addListener(function(message) {
     if(message.method == "gotImages") {
+        
+        if(message.supported) {
+        
+          pictures = message.images;
+        
+          document.getElementById('price').value = message.cost;
                                      
-        pictures = message.images;
+          document.getElementById('quantity').value = message.number;
+        }
         
         document.getElementById('product').value = message.message;
-        
-        document.getElementById('price').value = message.cost;
-                                     
-        document.getElementById('quantity').value = message.number;
                                      
         if(pictures[0] != null) {
                                      
