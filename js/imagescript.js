@@ -45,10 +45,22 @@ if(link.search(/[a-z]*\.amazon\.com/i) > -1) {
 
   findImages(area);
 }
+// If the domain is not optomized
 else {
   found = false;
   
   title = "This website is not optomized";
+  
+  // Grab all images on the page
+  pics = document.images;
+  
+  // Only return ones that are decently sized
+  for(var i = 0; i < pics.length; i++) {
+    if(pics[i].width > 40 && pics[i].height > 40) {
+      pictures.push(pics[i].src);
+    }
+  }
+  
 }
 
 // Send data as a message to the extension

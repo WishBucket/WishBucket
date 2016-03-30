@@ -32,9 +32,10 @@ document.addEventListener('DOMContentLoaded', function() {
 chrome.runtime.onMessage.addListener(function(message) {
     if(message.method == "gotImages") {
         
-        if(message.supported) {
+        pictures = message.images;
         
-          pictures = message.images;
+        // Check if webpage is optomized
+        if(message.supported) {
         
           document.getElementById('price').value = message.cost;
                                      
