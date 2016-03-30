@@ -4,21 +4,17 @@ var link = document.URL;
 var found = true;
 
 var pictures = []; // Store product images
-var area;  // Page area that contains product images
 var title; // Product name
 var price; // First attempt to find price
-var qlist; // Quantity dropdown
 var quant; // Selected quantity
 
 // If URL matches an Amazon domain
 if(link.search(/[a-z]*\.amazon\.com/i) > -1) {
 
-  pictures = [];
-  area = document.getElementById('leftCol');
+  var area = document.getElementById('leftCol'); // Area containing the images
   title = document.getElementById('productTitle').innerHTML;
   price =  document.getElementById('priceblock_ourprice');
-  qlist = document.getElementById('quantity');
-  quant;
+  var qlist = document.getElementById('quantity'); // Quantity dropdown
 
   // Make sure quantity dropdown exists
   if(qlist != null) {
@@ -38,13 +34,24 @@ if(link.search(/[a-z]*\.amazon\.com/i) > -1) {
 
   // Grab price as a string
   price = price.innerHTML;
-  // Remove spaces if they exist
-  // Solution found at
-  //http://stackoverflow.com/questions/5963182/how-to-remove-spaces-from-a-string-using-javascript
-  price = price.replace(/\s+/g, '');
 
   findImages(area);
 }
+
+// If URL matches an Ebay domain
+else if(link.search(/[a-z]*\.ebay\.com/i) > -1) {
+
+  var area = document.getElementById('PicturePanel');
+  
+  price = document.getElementById('prcIsum').innerHTML;
+  quant = document.getElementById('qtyTextBox').value;
+  title = document.getElementById('itemTitle').innerHTML;
+  
+  title = title.replace(/<.*>.*<.*>/, '');
+  
+  findImages(area);
+}
+
 // If the domain is not optomized
 else {
   found = false;
@@ -62,6 +69,9 @@ else {
   }
   
 }
+
+// Remove unneeded characters if they exist
+price = price.replace(/[^\d.$-]/g, '');
 
 // Send data as a message to the extension
 chrome.runtime.sendMessage({method:"gotImages", images:pictures, message:title, cost:price, number:quant, supported:found});
