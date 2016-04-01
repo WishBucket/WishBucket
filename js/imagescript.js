@@ -13,9 +13,16 @@ var extra; // FOr any additional information
 if(link.search(/[a-z]*\.amazon\.com/i) > -1) {
 
   var area = document.getElementById('leftCol'); // Area containing the images
-  title = document.getElementById('productTitle').innerHTML;
+  title = document.getElementById('productTitle');
   price =  document.getElementById('priceblock_ourprice');
   var qlist = document.getElementById('quantity'); // Quantity dropdown
+  
+  if(title != null) {
+    title = title.innerHTML;
+  }
+  else {
+    title = document.getElementById('ebooksProductTitle').innerHTML;
+  }
 
   // Make sure quantity dropdown exists
   if(qlist != null) {
@@ -32,9 +39,15 @@ if(link.search(/[a-z]*\.amazon\.com/i) > -1) {
   if(price == null) {
       price = document.getElementsByClassName('offer-price')[0];
   }
+  if(price == null) {
+      price = document.getElementsByClassName('a-size-medium a-color-price')[0];
+  }
 
   // Grab price as a string
   price = price.innerHTML;
+  
+  // Remove unneeded characters if they exist
+  price = price.replace(/[^\d.$,-]/g, '');
 
   findImages(area);
 }
@@ -44,10 +57,20 @@ else if(link.search(/[a-z]*\.ebay\.com/i) > -1) {
 
   var area = document.getElementById('PicturePanel');
   
-  price = document.getElementById('prcIsum').innerHTML;
+  price = document.getElementById('prcIsum');
   var quant = document.getElementById('qtyTextBox');
   title = document.getElementById('itemTitle').innerText;
   var bid = document.getElementById('prcIsum_bidPrice');
+  
+  if(price != null) {
+    price = price.innerHTML;
+
+    // Remove unneeded characters if they exist
+    price = price.replace(/[^\d.$,-]/g, '');
+  }
+  else {
+    price = "Bid Only";
+  }
   
   if(quant != null) {
     quant = quant.value;
@@ -85,9 +108,6 @@ else {
   }
   
 }
-
-// Remove unneeded characters if they exist
-price = price.replace(/[^\d.$,-]/g, '');
 
 // Send data as a message to the extension
 chrome.runtime.sendMessage({method:"gotImages", images:pictures, message:title, cost:price, number:quant, com:extra, supported:found});
