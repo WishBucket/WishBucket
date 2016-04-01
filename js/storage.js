@@ -1,6 +1,7 @@
 //Prototype Product Object
-	function Product(url, price, quantity, productName, comment){
+	function Product(url, imageURL, price, quantity, productName, comment){
 			this.url = url;
+			this.imageURL = imageURL;
 			this.price = price;
 			this.quantity = quantity;
 			this.productName = productName;
@@ -45,7 +46,7 @@
 		this.name = name;
 		this.color = color;
 		this.icon = icon;
-		this.products = new Array();
+		this.products = [];
 
 		//Bucket Behavior
 		this.getName = function(){
@@ -78,18 +79,20 @@
 
 			@return {Product} - product created
 		*/
-		this.addProduct = function(url, price, quantity, productName, comment){
+		this.addProduct = function(url, imageURL, price, quantity, productName, comment){
 			try{
 				//check that varaibles are defined
-				if(typeof url != 'undefined' && typeof price != 'undefined' && typeof quantity != 'undefined' && typeof productName != 'undefined' && typeof comment != 'undefined'){
+				if(typeof url != 'undefined' && typeof price != 'undefined' && typeof quantity != 'undefined' && typeof productName != 'undefined'){
 					//checks that quanitity is a number
 					//Does not check price because price could exist as a string depending on implementation
+
 					if(!isNaN(quantity)){
-						var temp = new Product(url, price, quantity, productName, comment)
+						var temp = new Product(url, imageURL, price, quantity, productName, comment);
 						this.products.push(temp);
 						return temp;
 					}
 				}
+				//saveChanges();
 			}
 			catch(err){
 				console.log("Error: " + err + " in addProduct function");
@@ -135,26 +138,27 @@
 	 var loadComplete = false;
 	//array of Buckets
 	var arrBucket = [];
-
-	//test code
-	// addBucket("tom", "red", "account_balance");
-	// addBucket("Jerry", "blue", "grade");
+	//clearMem();
 	//
-
-	// arrBucket[1].addProduct("http://ecx.images-amazon.com/images/I/51Lo6eQGclL.jpg", 10.27, 1, "Steak", "Online meat seams like a good idea");
+	//test code
+	//addBucket("tom", "red", "account_balance");
+	//addBucket("Jerry", "blue", "grade");
+	//
+	//
+	 //arrBucket[1].addProduct("http://amazon.com","http://ecx.images-amazon.com/images/I/51Lo6eQGclL.jpg", 10.27, 1, "Steak", "Online meat seams like a good idea");
 	// arrBucket[1].addProduct("http://ecx.images-amazon.com/images/I/91J4beN4sEL._SX522_.jpg", 12.92, 5, "Camera", "Super cheap");
 	// saveChanges();
    //load list of existing buckets.
 
-	//clearMem();
 	loadBucket();
 	function loadBucket(){
 		return s.get('BucketList', function(data){
-		 arrBucket = data.BucketList;
-		 bucketify();
-		 console.log(arrBucket);
-		 loadComplete = true;
-		 	 arrBucket[0].addProduct("http://ecx.images-amazon.com/images/I/31IGXQAOw8L.jpg", 24.99, 2, "Canon ES71II Lens Hood for EF 50mm f/1.4 SLR Lens", "its alright");
+			if(data.BucketList != undefined){
+		 		arrBucket = data.BucketList;
+		 		bucketify();
+		 		//console.log(arrBucket);
+		 		loadComplete = true;
+	 }
 		 return arrBucket;
 	 });
 	}
@@ -186,7 +190,10 @@
 	  closes in order to make changes permanent
 	*/
 	function saveChanges(){
-		s.set({'BucketList': arrBucket}, function(){});
+		console.log("save changes called");
+		s.set({'BucketList': arrBucket}, function(){
+			console.log("finished");
+		});
 	}
 
 	/*Makes array arrBucket into an array of Bucket objects
@@ -200,7 +207,8 @@
 				var arrayLength = arrBucket.length;
 				for(var i = 0; i < arrayLength; i++){
 					var temp = new Bucket(arrBucket[i].name, arrBucket[i].color, arrBucket[i].icon);
-					temp.addProductList(arrBucket.products);
+					console.log(arrBucket[i].products);
+					temp.addProductList(arrBucket[i].products);
 					arrBucket.splice(i, 1, temp);
 				}
 			}

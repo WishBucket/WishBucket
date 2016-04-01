@@ -275,6 +275,7 @@ input.header-search-input:focus {
 
 .product-title {
   font-weight: bold;
+  cursor: pointer;
 }
 
 
