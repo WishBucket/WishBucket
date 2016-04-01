@@ -7,6 +7,7 @@ var pictures = []; // Store product images
 var title; // Product name
 var price; // First attempt to find price
 var quant; // Selected quantity
+var extra; // FOr any additional information
 
 // If URL matches an Amazon domain
 if(link.search(/[a-z]*\.amazon\.com/i) > -1) {
@@ -44,8 +45,23 @@ else if(link.search(/[a-z]*\.ebay\.com/i) > -1) {
   var area = document.getElementById('PicturePanel');
   
   price = document.getElementById('prcIsum').innerHTML;
-  quant = document.getElementById('qtyTextBox').value;
+  var quant = document.getElementById('qtyTextBox');
   title = document.getElementById('itemTitle').innerHTML;
+  var bid = document.getElementById('prcIsum_bidPrice');
+  
+  if(quant != null) {
+    quant = quant.value;
+  }
+  else {
+    quant = 1;
+  }
+  
+  if(bid != null) {
+    bid = bid.innerText;
+    bid = bid.replace(/[^\d.$,-]/g, '');
+    
+    extra = "The last known bid was " + bid;
+  }
   
   title = title.replace(/<.*>.*<.*>/, '');
   
@@ -71,10 +87,10 @@ else {
 }
 
 // Remove unneeded characters if they exist
-price = price.replace(/[^\d.$-]/g, '');
+price = price.replace(/[^\d.$,-]/g, '');
 
 // Send data as a message to the extension
-chrome.runtime.sendMessage({method:"gotImages", images:pictures, message:title, cost:price, number:quant, supported:found});
+chrome.runtime.sendMessage({method:"gotImages", images:pictures, message:title, cost:price, number:quant, com:extra, supported:found});
 
 
 // Recursively go through each element and find all images of a reasonable size on Amazon

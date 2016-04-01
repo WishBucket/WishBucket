@@ -40,6 +40,10 @@ chrome.runtime.onMessage.addListener(function(message) {
           document.getElementById('price').value = message.cost;
                                      
           document.getElementById('quantity').value = message.number;
+          
+          if(message.com != null) {
+            document.getElementById('comments').value = message.com;
+          }
         }
         
         document.getElementById('product').value = message.message;
