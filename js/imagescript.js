@@ -46,7 +46,7 @@ else if(link.search(/[a-z]*\.ebay\.com/i) > -1) {
   
   price = document.getElementById('prcIsum').innerHTML;
   var quant = document.getElementById('qtyTextBox');
-  title = document.getElementById('itemTitle').innerHTML;
+  title = document.getElementById('itemTitle').innerText;
   var bid = document.getElementById('prcIsum_bidPrice');
   
   if(quant != null) {
@@ -63,7 +63,7 @@ else if(link.search(/[a-z]*\.ebay\.com/i) > -1) {
     extra = "The last known bid was " + bid;
   }
   
-  title = title.replace(/<.*>.*<.*>/, '');
+  title = title.replace(/Details about  /, '');
   
   findImages(area);
 }
