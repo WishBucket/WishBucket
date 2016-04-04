@@ -90,7 +90,45 @@ else if(link.search(/[a-z]*\.ebay\.com/i) > -1) {
   
   findImages(area);
 }
+//if URL matches newegg domain
+else if(link.search(/[a-z]*\.newegg\.com/i) > -1){
+	console.log("running " + link);
+	//test if regular sales page or shell shocker page
+	var shellShocker = document.title
+	var testSS = new RegExp("Shell Shocker");
 
+	if(testSS.test(link)){
+	
+	}
+	else{
+		var area = document.getElementsByClassName("objImages")[0];
+		title = document.getElementById("grpDescrip_0").innerText;
+		var classElement = document.getElementsByClassName("price-current ")
+		
+		price = document.getElementById("singleFinalPrice").getAttribute("value");
+		
+		//in case price cant be found due to repeated id
+		if(price == null){
+			price = document.getElementById("TotalPrice");
+			//check that id TotalPrice exist
+			if(price != null){
+				price = price.innerText;
+			}
+			else{
+				price = "0";
+			}
+		}
+		
+		quant = document.getElementById('qtyMainItems').getAttribute("value");
+		console.log(quant);
+		console.log(area);
+		console.log(title);
+	}
+	
+	price = price.replace(/[^\d.$,-]/g, '');
+	findImages(area);
+	
+}
 // If the domain is not optomized
 else {
   found = false;
