@@ -47,6 +47,8 @@ chrome.runtime.onMessage.addListener(function(message) {
         }
         
         document.getElementById('product').value = message.message;
+        
+        document.getElementById('pageURL').value = message.pagelink;
                                      
         if(pictures[0] != null) {
                                      

@@ -110,7 +110,7 @@ else {
 }
 
 // Send data as a message to the extension
-chrome.runtime.sendMessage({method:"gotImages", images:pictures, message:title, cost:price, number:quant, com:extra, supported:found});
+chrome.runtime.sendMessage({method:"gotImages", images:pictures, message:title, cost:price, number:quant, com:extra, supported:found, pagelink:link});
 
 
 // Recursively go through each element and find all images of a reasonable size on Amazon
