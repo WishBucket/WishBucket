@@ -92,41 +92,53 @@ else if(link.search(/[a-z]*\.ebay\.com/i) > -1) {
 }
 //if URL matches newegg domain
 else if(link.search(/[a-z]*\.newegg\.com/i) > -1){
-	console.log("running " + link);
 	//test if regular sales page or shell shocker page
 	var shellShocker = document.title
 	var testSS = new RegExp("Shell Shocker");
-
-	if(testSS.test(link)){
+	console.log(testSS.test(shellShocker));
+	if(testSS.test(shellShocker)){
 	
 	}
 	else{
 		var area = document.getElementsByClassName("objImages")[0];
-		title = document.getElementById("grpDescrip_0").innerText;
+		title = document.getElementById("grpDescrip_0")
+		if(title != null){
+			title = title.innerText;
+		}
+		else{
+			title = document.title;
+		}
 		var classElement = document.getElementsByClassName("price-current ")
 		
-		price = document.getElementById("singleFinalPrice").getAttribute("value");
+		price = document.getElementById("TotalPrice")
 		
-		//in case price cant be found due to repeated id
-		if(price == null){
-			price = document.getElementById("TotalPrice");
-			//check that id TotalPrice exist
-			if(price != null){
-				price = price.innerText;
+		
+		//check variety of ways that price can manifest
+
+		if(price != null){
+					price = price.innerText;
+		}
+		else{
+			
+			if(document.getElementById("singleFinalPrice") != null){
+				price = document.getElementById("singleFinalPrice").getAttribute("content");
+				if(price == null){
+					price = document.getElementById("singleFinalPrice").innerText;
+				}
 			}
-			else{
+			//default to 0 if all else fails
+			if(price == null){
 				price = "0";
 			}
 		}
 		
 		quant = document.getElementById('qtyMainItems').getAttribute("value");
-		console.log(quant);
-		console.log(area);
-		console.log(title);
+		
+		price = price.replace(/[^\d.$,-]/g, '');
+		findImages(area);
 	}
 	
-	price = price.replace(/[^\d.$,-]/g, '');
-	findImages(area);
+	
 	
 }
 // If the domain is not optomized
