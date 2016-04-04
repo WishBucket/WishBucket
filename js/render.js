@@ -40,6 +40,13 @@ $(document).ready(function(){
     saveChanges();
   });
 
+  $("#delete-bucket").click(function(){
+    removeBucket(arrBucket[curBucket]);
+    saveChanges();
+    renderBuckets();
+    renderProducts(arrBucket[curBucket]);
+  });
+
   $("#product-add").click(function(){
     //saveChanges();
     var productName = $('#product').val();
