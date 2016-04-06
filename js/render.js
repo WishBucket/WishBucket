@@ -10,7 +10,6 @@ var curBucket = 0;
 
 $(document).ready(function(){
 
-
   $("#close-product").click(function(){
     $("#new-product").slideUp();
   });
@@ -126,7 +125,7 @@ function renderProducts(productList){
       var item = document.createElement("div");
       $(item).addClass("wishlist-item");
       $(item).addClass("valign-wrapper");
-      $(item).append('<i class="material-icons valign">more_vert</i><i class="material-icons valign checkbox">check_box_outline_blank</i><div class="card-panel white product-card valign"><img src="' + product.imageURL + '" class="product-image" alt="Product Image"><div class="product-price">'+ product.price +'</div></div><div class="product-info valign"><div class="product-title" url="' + product.url +'">'+ product.productName +'</div><div class="product-description">'+ product.comment +'</div></div>');
+      $(item).append('<i class="material-icons valign">more_vert</i><i class="material-icons valign checkbox">check_box_outline_blank</i><div class="card-panel white product-card valign"><img src="' + product.imageURL + '" class="product-image" alt="Product Image"><div class="product-price">'+ product.price +'</div><div class="product-quantity chip red">' + product.quantity + '</div></div><div class="product-info valign"><div class="product-title" url="' + product.url +'">'+ product.productName +'</div><div class="product-description">'+ product.comment +'</div></div>');
       $("#product-list").append(item);
     }
   } else {
@@ -140,8 +139,17 @@ function renderProducts(productList){
      })
   });
   $(".checkbox").click(function(){
+    var siblings = $(this).parent().siblings();
+    for (var i = 0; i < siblings.length; i++) {
+      if (siblings[i] = $(this).parent()) {
+        arrBucket[curBucket].removeProduct(arrBucket[curBucket].getProductList()[i]);
+        saveChanges();
+      }
+    }
+    $(this).parent().fadeOut();
     if ($(this).text() == "check_box_outline_blank") {
       $(this).text("check_box");
+
       //call something
     } else {
       $(this).text("check_box_outline_blank");
