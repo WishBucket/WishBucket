@@ -145,6 +145,10 @@ else if(link.search(/[a-z]*\.newegg\.com/i) > -1){
 // If the URL matches a BestBuy domain
 else if(link.search(/[a-z]*\.bestbuy\.com/i) > -1){
     
+    title = document.getElementById('sku-title').innerText;
+    
+    price = document.getElementsByClassName('item-price')[0].innerText;
+    
     
 }
 
