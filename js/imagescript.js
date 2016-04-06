@@ -141,11 +141,16 @@ else if(link.search(/[a-z]*\.newegg\.com/i) > -1){
 	
 	
 }
+
+// If the URL matches a BestBuy domain
+else if(link.search(/[a-z]*\.bestbuy\.com/i) > -1){
+    
+    
+}
+
 // If the domain is not optomized
 else {
   found = false;
-  
-  title = "This website is not optomized";
   
   // Grab all images on the page
   pics = document.images;
