@@ -146,10 +146,10 @@ else if(link.search(/[a-z]*\.newegg\.com/i) > -1){
 else if(link.search(/[a-z]*\.bestbuy\.com/i) > -1){
     
     title = document.getElementById('sku-title').innerText;
-    
     price = document.getElementsByClassName('item-price')[0].innerText;
+    quant = 1;
     
-    
+    findImages(document.getElementsByClassName('image-gallery-thumbs-slides-inner')[0]);
 }
 
 // If the domain is not optomized
@@ -176,7 +176,13 @@ chrome.runtime.sendMessage({method:"gotImages", images:pictures, message:title, 
 function findImages(elem){
     if(elem.children.length == 0) {
         if(elem.nodeName.toLowerCase() === 'img' && elem.width > 40 && elem.height > 40) {
-            pictures.push(elem.src);
+            if(elem.src.length < 1000) {
+                var n = elem.src.indexOf(';');
+                pictures.push(elem.src.substring(0, n != -1 ? n : elem.src.length));
+            }
+            else {
+                setTimeout(waiturl(elem), 500);
+            }
         }
     }
     
@@ -185,4 +191,8 @@ function findImages(elem){
             findImages(elem.children[j]);
         }
     }
+}
+
+function waiturl(elem) {
+    pictures.push(elem.src);
 }

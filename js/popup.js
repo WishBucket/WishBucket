@@ -55,6 +55,7 @@ chrome.runtime.onMessage.addListener(function(message) {
         if(pictures[0] != null) {
 
             document.getElementById('prod_img').src = pictures[0];
+
         }
     }
 });
