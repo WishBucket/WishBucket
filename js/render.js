@@ -19,10 +19,12 @@ $(document).ready(function(){
     $("#new-bucket").slideUp();
   });
 
-  $("#add-bucket").click(function(){
+   $("#add-bucket").click(function(){
+    $("#new-bucket-card").show(); 
+    $("#update-bucket-card").hide(); 
     $("#new-bucket").slideDown();
   });
-
+  
   $("#bucket-submit").click(function(){
     //saveChanges();
     var bucketName = $('#bucket-name').val();
@@ -38,6 +40,7 @@ $(document).ready(function(){
 
   $("#delete-bucket").click(function(){
     removeBucket(arrBucket[curBucket]);
+    $("#new-bucket").slideUp(); 
     saveChanges();
     renderBuckets();
     renderProducts(arrBucket[curBucket]);
@@ -61,6 +64,7 @@ $(document).ready(function(){
 
 });
 
+
 function renderBuckets(){
   $("#buckets").empty();
   var collection = document.createElement("ul");
@@ -70,13 +74,13 @@ function renderBuckets(){
     var color = arrBucket[i].color;
     var icon = arrBucket[i].icon;
     if (i == 0) {
-      $(collection).append('<li class="collection-item bucket selected ' + color + '"><i class="material-icons circle">' + icon + '</i><div class="title">' + title +'</div></li>');
+      $(collection).append('<li class="collection-item bucket selected ' + color + '"><i class="material-icons circle">' + icon + '</i><div class="title">' + title +'<i class="material-icons valign settingsGear">settings</i></div></li>');
     } else {
-      $(collection).append('<li class="collection-item bucket"><i class="material-icons circle ' + color + '">' + icon + '</i><div class="title">' + title +'</div></li>');
+      $(collection).append('<li class="collection-item bucket"><i class="material-icons circle ' + color + '">' + icon + '</i><div class="title">' + title +'<i class="material-icons valign settingsGear">settings</i></div></li>');
     }
   }
   $("#buckets").append(collection);
-  $(".bucket").click(function(){
+  $(".bucket").click(function(){    
     var circle = $(this).find("i");
     var classes = (circle.attr("class"));
     classes = classes.replace("material-icons circle","");
@@ -85,14 +89,26 @@ function renderBuckets(){
     $(circle).removeClass(classes);
     var siblings = $(this).siblings();
     $(siblings).each(function( index ) {
-      if ($(siblings[index]).hasClass("selected")) {
+    
+      if ($(siblings[index]).hasClass("selected")) { 
+      	$(".settingsGear").show(); 
         $(siblings[index]).removeClass("selected");
         classes = ($(siblings[index]).attr("class"));
         classes = classes.replace("collection-item bucket","");
-        $(siblings[index]).find("i").addClass(classes);
+
+        var icons = $(siblings[index]).find("i");
+  	$(icons[0]).addClass(classes);	
         $(siblings[index]).removeClass(classes);
+        console.log(classes);
       }
     });
+   
+    //if the gear on the bucket is clicked
+    $(".settingsGear").click(function(){
+          $("#new-bucket-card").hide(); 
+    	  $("#update-bucket-card").show(); 
+	  $("#new-bucket").slideDown();
+  });
     // call render
     var name = $(this).find(".title")[0].innerHTML;
     for (i = 0; i < arrBucket.length; i++) {
@@ -102,6 +118,7 @@ function renderBuckets(){
       }
     }
   });
+
 }
 
 function render () {
