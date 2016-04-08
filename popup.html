@@ -39,7 +39,7 @@
           <input type="text" name="Search" class="header-search-input z-depth-2" placeholder="Search">
         </div>
         <!--New Product Chunk-->
-        <div id="new-product" class="z-depth-2" style="display: none;">
+        <div id="new-product" class="z-depth-2">
           <div class="row">
             <form class="col s12">
               <div id="close-product">
@@ -81,7 +81,9 @@
         </div>
         <div id="product-list"></div>
       </div>
+	  <!--Bucket List Chunk-->
       <div id="bucket-list" class="col s4 z-depth-3">
+		<!--New Bucket Chunk--> 
         <div id="new-bucket" class="col s12 z-depth-2">
           <div id="close-bucket">
             <i  class="material-icons">clear</i>
@@ -134,9 +136,19 @@
               <span></span>
             </label>
           </div>
-          <button id="bucket-submit" class="waves-effect waves-light btn red">Save Bucket</button>
-        </div>
+          <div id = "new-bucket-card"> 
+             <button id="bucket-submit" class="waves-effect waves-light btn red">Save Bucket</button>
+          </div> 
+          <div id = "update-bucket-card"> 
+            <button id="bucket-rename" class="waves-effect waves-light btn red">Update</button>
+		<div id ="delete-bucket">
+		    <button class = "btn-floating purple darken-2"><i class ="material-icons">delete</i></button>
+		</div>
+          </div>
+	  </div> 
+			
         <div id="buckets"><div>
+
       </div>
     </div>
     <div class="fixed-action-btn" style="bottom: 24px; right: 29%;">
@@ -148,8 +160,9 @@
       <li><a id="add-product" class="btn-floating yellow darken-1"><i class="material-icons">add</i></a></li>
     </ul>
   </div>
+  <!-- Old delete button 
    <div class = "fixed-action-btn" style = "bottom: 40px;">
-     <a id = "delete-bucket" class="waves-effect waves-light btn purple darken-2" type="submit">Delete Bucket</a>
-   </div>
+     <button id = "delete-bucket" class="waves-effect waves-light btn purple darken-2" type="submit">Delete Bucket</button>
+   </div> -->
   </body>
 </html>
