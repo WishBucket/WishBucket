@@ -186,6 +186,14 @@ input.header-search-input:focus {
   cursor: pointer;
 }
 
+.settingsGear{
+	cursor: pointer;
+	vertical-align: middle; 
+	float: right; 
+}
+
+
+
 .wishlist-item {
   height: 150px;
   width: 433px;
@@ -197,7 +205,6 @@ input.header-search-input:focus {
   display: inline-block;
   padding: 10px;
   vertical-align: middle;
-  position: relative;
 }
 
 .add-product-card {
@@ -217,13 +224,6 @@ input.header-search-input:focus {
 .product-price {
   margin: auto;
   text-align: center;
-}
-
-.product-quantity {
-  position: absolute;
-  right: -15px;
-  bottom: -15px;
-  color: white;
 }
 
 .product-info {
@@ -255,6 +255,23 @@ input.header-search-input:focus {
   display: none;
 }
 
+#edit-bucket {
+  position: fixed;
+  z-index: 1;
+  background-color: #2d2d2d;
+  width: 216px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  display: none;
+}
+
+#delete-bucket{
+	position: relative; 
+	z-index: 1; 
+	float: right; 
+	cursor: pointer; 
+}
+
 #new-product .row {
   margin: 0;
 }
@@ -268,6 +285,15 @@ input.header-search-input:focus {
 }
 
 #close-bucket {
+  position: fixed;
+  right: 5px;
+  top: 5px;
+  z-index: 1;
+  cursor: pointer;
+  color: #fff;
+}
+
+#close-edit-bucket {
   position: fixed;
   right: 5px;
   top: 5px;
