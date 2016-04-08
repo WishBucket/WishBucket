@@ -47,7 +47,7 @@ chrome.runtime.onMessage.addListener(function(message) {
         }
 
         document.getElementById('product').value = message.message;
-        if ($('#product').val() != '') {
+        if ($('#product').val() != '' && $('#product').val() != 'undefined') {
           $("#new-product").show();
         }
         document.getElementById('pageURL').value = message.pagelink;

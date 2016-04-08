@@ -1,11 +1,8 @@
 $.when($.ajax(loadBucket())).then(function () {
-  console.log(loadComplete);
-  console.log(arrBucket);
   //buckets = getBuckets();
    render();
 
 });
-console.log("loadBucket type: " + typeof loadBucket());
 var curBucket = 0;
 
 $(document).ready(function(){
@@ -53,7 +50,6 @@ $(document).ready(function(){
     var productQuantity = $('#quantity').val();
     var productComment = $('#comments').val();
     var url = $('#pageURL').val();
-    console.log(productComment);
     var imgURL = $('#prod_img').attr('src');
     arrBucket[curBucket].addProduct(url, imgURL, productPrice, productQuantity, productName, productComment);
     //saveChanges();
@@ -95,7 +91,6 @@ function renderBuckets(){
         classes = classes.replace("collection-item bucket","");
         $(siblings[index]).find("i").addClass(classes);
         $(siblings[index]).removeClass(classes);
-        console.log(classes);
       }
     });
     // call render
@@ -125,7 +120,7 @@ function renderProducts(productList){
       var item = document.createElement("div");
       $(item).addClass("wishlist-item");
       $(item).addClass("valign-wrapper");
-      $(item).append('<i class="material-icons valign">more_vert</i><i class="material-icons valign checkbox">check_box_outline_blank</i><div class="card-panel white product-card valign"><img src="' + product.imageURL + '" class="product-image" alt="Product Image"><div class="product-price">'+ product.price +'</div><div class="product-quantity chip red">' + product.quantity + '</div></div><div class="product-info valign"><div class="product-title" url="' + product.url +'">'+ product.productName +'</div><div class="product-description">'+ product.comment +'</div></div>');
+      $(item).append('<i class="material-icons valign checkbox">delete</i><div class="card-panel white product-card valign"><img src="' + product.imageURL + '" class="product-image" alt="Product Image"><div class="product-price">'+ product.price +'</div><div class="product-quantity chip red">' + product.quantity + '</div></div><div class="product-info valign"><div class="product-title" url="' + product.url +'">'+ product.productName +'</div><div class="product-description">'+ product.comment +'</div></div><i class="material-icons valign">create</i>');
       $("#product-list").append(item);
     }
   } else {
@@ -139,21 +134,14 @@ function renderProducts(productList){
      })
   });
   $(".checkbox").click(function(){
-    var siblings = $(this).parent().siblings();
+    var siblings = $(this).parent().parent().children();
     for (var i = 0; i < siblings.length; i++) {
       if (siblings[i] = $(this).parent()) {
         arrBucket[curBucket].removeProduct(arrBucket[curBucket].getProductList()[i]);
         saveChanges();
+        break;
       }
     }
     $(this).parent().fadeOut();
-    if ($(this).text() == "check_box_outline_blank") {
-      $(this).text("check_box");
-
-      //call something
-    } else {
-      $(this).text("check_box_outline_blank");
-      //call something else...
-    }
   });
 }
