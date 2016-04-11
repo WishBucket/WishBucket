@@ -47,15 +47,7 @@ if(link.search(/[a-z]*\.amazon\.com/i) > -1) {
   price = price.innerHTML;
   
   // Remove unneeded characters if they exist
-  price = price.replace(/[^\d.$,]/g, '');
-    
-    var index = 1;
-    
-    while(price.charAt(index) != '$' && price.charAt(index) != '') {
-        index++;
-    }
-    
-    price = price.substring(0, index);
+  price = price.replace(/[^\d.$,-]/g, '');
 
   findImages(area);
 }
@@ -74,7 +66,7 @@ else if(link.search(/[a-z]*\.ebay\.com/i) > -1) {
     price = price.innerHTML;
 
     // Remove unneeded characters if they exist
-    price = price.replace(/[^\d.$,]/g, '');
+    price = price.replace(/[^\d.$,-]/g, '');
   }
   else {
     price = "Bid Only";
@@ -142,7 +134,7 @@ else if(link.search(/[a-z]*\.newegg\.com/i) > -1){
 		
 		quant = document.getElementById('qtyMainItems').getAttribute("value");
 		
-		price = price.replace(/[^\d.$,]/g, '');
+		price = price.replace(/[^\d.$,-]/g, '');
 		findImages(area);
 	}
 	

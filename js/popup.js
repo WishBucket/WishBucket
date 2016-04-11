@@ -43,6 +43,8 @@ chrome.runtime.onMessage.addListener(function(message) {
 
           if(message.com != null) {
             document.getElementById('comments').value = message.com;
+          } else {
+            document.getElementById('comments').value = "";
           }
         }
 

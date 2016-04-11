@@ -170,6 +170,7 @@ input.header-search-input:focus {
   padding-top: 5px;
   font-size: 16px;
   margin-left: 0;
+  display: inline-block;
 }
 
 #bucket-list .collection .collection-item.bucket p {
@@ -188,11 +189,16 @@ input.header-search-input:focus {
 
 .settingsGear{
 	cursor: pointer;
-	vertical-align: middle; 
-	float: right; 
+	vertical-align: middle;
+	float: right;
+  display: inline-block;
 }
 
 
+
+.edit-product {
+  cursor: pointer;
+}
 
 .wishlist-item {
   height: 150px;
@@ -205,6 +211,7 @@ input.header-search-input:focus {
   display: inline-block;
   padding: 10px;
   vertical-align: middle;
+  position: relative;
 }
 
 .add-product-card {
@@ -226,11 +233,11 @@ input.header-search-input:focus {
   text-align: center;
 }
 
-.product-quantity {		
-  position: absolute;		
-  right: -15px;		
-  bottom: -15px;		
-  color: white;		
+.product-quantity {
+  position: absolute;
+  right: -15px;
+  bottom: -15px;
+  color: white;
 }
 
 
@@ -274,10 +281,10 @@ input.header-search-input:focus {
 }
 
 #delete-bucket{
-	position: relative; 
-	z-index: 1; 
-	float: right; 
-	cursor: pointer; 
+	position: relative;
+	z-index: 1;
+	float: right;
+	cursor: pointer;
 }
 
 #new-product .row {
@@ -313,6 +320,7 @@ input.header-search-input:focus {
 #product-column {
   height: 400px;
   overflow: scroll;
+  position: relative;
 }
 
 .product-title {
@@ -388,12 +396,12 @@ input.header-search-input:focus {
   background-color: #9c27b0;
 }
 
-#select-fav[type="radio"] + span::before {
+#select-favorite[type="radio"] + span::before {
   content: '';
   background: url('../ic_favorite_white-01.png') no-repeat center center;
   background-size: 22px;
 }
-#select-ext[type="radio"] + span::before {
+#select-extension[type="radio"] + span::before {
   content: '';
   background: url('../ic_extension_white-01.png') no-repeat center center;
   background-size: 22px;
@@ -403,12 +411,12 @@ input.header-search-input:focus {
   background: url('../ic_grade_white-01.png') no-repeat center center;
   background-size: 22px;
 }
-#select-money[type="radio"] + span::before {
+#select-attach_money[type="radio"] + span::before {
   content: '';
   background: url('../ic_attach_money_white-01.png') no-repeat center center;
   background-size: 22px;
 }
-#select-emoticon[type="radio"] + span::before {
+#select-insert_emoticon[type="radio"] + span::before {
   content: '';
   background: url('../ic_insert_emoticon_white-01.png') no-repeat center center;
   background-size: 22px;
