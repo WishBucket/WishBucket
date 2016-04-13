@@ -106,9 +106,11 @@ function renderBuckets(){
     var icon = arrBucket[i].icon;
     if (i == 0) {
       $(collection).append('<li class="collection-item bucket selected ' + color + '"><i class="material-icons circle">' + icon + '</i><div><div class="title">' + title +'</div><i class="material-icons valign settingsGear">settings</i></div></li>');
-    } else {
-      $(collection).append('<li class="collection-item bucket"><i class="material-icons circle ' + color + '">' + icon + '</i><div><div class="title">' + title +'</div><i class="material-icons valign settingsGear">settings</i></div></li>');
-    }
+
+	} else {
+      $(collection).append('<li class="collection-item bucket"><i class="material-icons circle ' + color + '">' + icon + '</i><div><div class="title">' + title +'</div><i class="material-icons valign settingsGear" style="display: none;">settings</i></div></li>');
+
+	}
   }
   $("#buckets").append(collection);
 
@@ -125,22 +127,24 @@ function renderBuckets(){
   });
 
   $(".bucket").click(function(){
-    var circle = $(this).find("i");
+    var circle = $(this).find("i.material-icons.circle");
     var classes = (circle.attr("class"));
+    var gear = $(this).find("i.material-icons.settingsGear");
     classes = classes.replace("material-icons circle","");
     $(this).addClass(classes);
     $(this).addClass("selected");
     $(circle).removeClass(classes);
+    gear.show();
     var siblings = $(this).siblings();
     $(siblings).each(function( index ) {
 
       if ($(siblings[index]).hasClass("selected")) {
-      	$(".settingsGear").show();
         $(siblings[index]).removeClass("selected");
         classes = ($(siblings[index]).attr("class"));
         classes = classes.replace("collection-item bucket","");
-
+	var gear = $(siblings[index]).find("i.material-icons.settingsGear");
         var icons = $(siblings[index]).find("i");
+        gear.hide();
   	$(icons[0]).addClass(classes);
         $(siblings[index]).removeClass(classes);
         console.log(classes);
@@ -161,7 +165,6 @@ function renderBuckets(){
 }
 
 function render () {
-  //buckets = getBuckets();
   if (arrBucket.length > 0){
     renderBuckets();
     renderProducts(arrBucket[curBucket].products);
