@@ -8,6 +8,11 @@ var curProduct = 0;
 
 $(document).ready(function(){
 
+  //render if you type in the Search bar (matt)
+  $("#top-bar").on('input', function(){
+    render();
+  });
+
   $("#close-product").click(function(){
     $("#new-product").slideUp();
   });
@@ -180,7 +185,15 @@ function renderProducts(productList){
       $(item).addClass("wishlist-item");
       $(item).addClass("valign-wrapper");
       $(item).append('<i class="material-icons valign checkbox">delete</i><div class="card-panel white product-card valign"><img src="' + product.imageURL + '" class="product-image" alt="Product Image"><div class="product-price">'+ product.price +'</div><div class="product-quantity chip red">' + product.quantity + '</div></div><div class="product-info valign"><div class="product-title" url="' + product.url +'">'+ product.productName +'</div><div class="product-description">'+ product.comment +'</div></div><i class="material-icons valign edit-product">create</i>');
-      $("#product-list").append(item);
+
+      //if no text in search bar, show all items
+      if(document.getElementsByName("SearchFieldName")[0].value===""){
+        $("#product-list").append(item);
+      }
+      //if text in search bar, show items with substring match
+      else if(product.productName.indexOf(document.getElementsByName("SearchFieldName")[0].value) > -1){
+        $("#product-list").append(item);
+      }
     }
   } else {
     var item = document.createElement("div");

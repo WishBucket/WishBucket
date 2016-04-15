@@ -7,7 +7,7 @@ var pictures = []; // Store product images
 var title; // Product name
 var price; // First attempt to find price
 var quant; // Selected quantity
-var extra; // FOr any additional information
+var extra; // For any additional information
 
 // If URL matches an Amazon domain
 if(link.search(/[a-z]*\.amazon\.com/i) > -1) {
