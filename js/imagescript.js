@@ -97,11 +97,19 @@ else if(link.search(/[a-z]*\.newegg\.com/i) > -1){
 	var testSS = new RegExp("Shell Shocker");
 	console.log(testSS.test(shellShocker));
 	if(testSS.test(shellShocker)){
-	
+	/*
+		var area = document.getElementsByClassName("objImages")[0];
+		title = document.getElementById("shellShockerViewDetails").innerText;
+		quant = 1;
+		price = document.getElementsByClassName("price-current ")[0].innerText;
+		findImages(area);
+		price = price.replace(/[^\d.$,-]/g, '');
+		//link = document.getElementById("shellShockerViewDetails").getAttribute("href");
+		*/
 	}
 	else{
 		var area = document.getElementsByClassName("objImages")[0];
-		title = document.getElementById("grpDescrip_0")
+		title = document.getElementById("grpDescrip_0");
 		if(title != null){
 			title = title.innerText;
 		}
