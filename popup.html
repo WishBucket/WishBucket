@@ -36,10 +36,10 @@
     <div id="wrapper" class="row">
       <div id="product-column" class="col s8">
         <div class="col s12 z-depth-1 header-search-wrapper" id="top-bar">
-          <input type="text" name="Search" class="header-search-input z-depth-2" placeholder="Search">
+          <input type="text" name="SearchFieldName" class="header-search-input z-depth-2" placeholder="Search Your Items">
         </div>
         <!--New Product Chunk-->
-        <div id="new-product" class="z-depth-2">
+        <div id="new-product" class="z-depth-2" style="display: none;">
           <div class="row">
             <form class="col s12">
               <div id="close-product">
@@ -75,13 +75,16 @@
                 </div>
                 <a id="right_but" class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">keyboard_arrow_right</i></a>
                 <a id="product-add" class="waves-effect waves-light btn red">Add to Bucket</a>
+                <a id="product-edit-submit" class="waves-effect waves-light btn red" style="display: none;">Save Product</a>
               </div>
             </form>
           </div>
         </div>
         <div id="product-list"></div>
       </div>
+	  <!--Bucket List Chunk-->
       <div id="bucket-list" class="col s4 z-depth-3">
+		<!--New Bucket Chunk-->
         <div id="new-bucket" class="col s12 z-depth-2">
           <div id="close-bucket">
             <i  class="material-icons">clear</i>
@@ -113,30 +116,39 @@
             </label>
           </div>
           <div class="five-select row">
-            <label for="select-fav">
-              <input type="radio" value="favorite" name="icon" id="select-fav" checked>
+            <label for="select-favorite">
+              <input type="radio" value="favorite" name="icon" id="select-favorite" checked>
               <span></span>
             </label>
-            <label for="select-ext">
-              <input type="radio" value="extension" name="icon" id="select-ext">
+            <label for="select-extension">
+              <input type="radio" value="extension" name="icon" id="select-extension">
               <span></span>
             </label>
             <label for="select-grade">
               <input type="radio" value="grade" name="icon" id="select-grade">
               <span></span>
             </label>
-            <label for="select-money">
-              <input type="radio" value="attach_money" name="icon" id="select-money">
+            <label for="select-attach_money">
+              <input type="radio" value="attach_money" name="icon" id="select-attach_money">
               <span></span>
             </label>
-            <label for="select-emoticon">
-              <input type="radio" value="insert_emoticon" name="icon" id="select-emoticon">
+            <label for="select-insert_emoticon">
+              <input type="radio" value="insert_emoticon" name="icon" id="select-insert_emoticon">
               <span></span>
             </label>
           </div>
-          <button id="bucket-submit" class="waves-effect waves-light btn red">Save Bucket</button>
-        </div>
+          <div id = "new-bucket-card">
+             <button id="bucket-submit" class="waves-effect waves-light btn red">Save Bucket</button>
+          </div>
+          <div id = "update-bucket-card">
+              <button id="bucket-rename" class="waves-effect waves-light btn red">Update</button>
+		          <button id ="delete-bucket" class = "btn-floating purple darken-2"><i class ="material-icons">delete</i>
+              </button>
+            </div>
+	      </div>
+
         <div id="buckets"><div>
+
       </div>
     </div>
     <div class="fixed-action-btn" style="bottom: 24px; right: 29%;">
@@ -148,8 +160,5 @@
       <li><a id="add-product" class="btn-floating yellow darken-1"><i class="material-icons">add</i></a></li>
     </ul>
   </div>
-   <div class = "fixed-action-btn" style = "bottom: 40px;">
-     <a id = "delete-bucket" class="waves-effect waves-light btn purple darken-2" type="submit">Delete Bucket</a>
-   </div>
   </body>
 </html>

@@ -7,7 +7,7 @@ var pictures = []; // Store product images
 var title; // Product name
 var price; // First attempt to find price
 var quant; // Selected quantity
-var extra; // FOr any additional information
+var extra; // For any additional information
 
 // If URL matches an Amazon domain
 if(link.search(/[a-z]*\.amazon\.com/i) > -1) {
@@ -149,11 +149,20 @@ else if(link.search(/[a-z]*\.newegg\.com/i) > -1){
 	
 	
 }
+
+// If the URL matches a BestBuy domain
+else if(link.search(/[a-z]*\.bestbuy\.com/i) > -1){
+    
+    title = document.getElementById('sku-title').innerText;
+    price = document.getElementsByClassName('item-price')[0].innerText;
+    quant = 1;
+    
+    findImages(document.getElementsByClassName('image-gallery-thumbs-slides-inner')[0]);
+}
+
 // If the domain is not optomized
 else {
   found = false;
-  
-  title = "This website is not optomized";
   
   // Grab all images on the page
   pics = document.images;
@@ -175,7 +184,13 @@ chrome.runtime.sendMessage({method:"gotImages", images:pictures, message:title, 
 function findImages(elem){
     if(elem.children.length == 0) {
         if(elem.nodeName.toLowerCase() === 'img' && elem.width > 40 && elem.height > 40) {
-            pictures.push(elem.src);
+            if(elem.src.length < 1000) {
+                var n = elem.src.indexOf(';');
+                pictures.push(elem.src.substring(0, n != -1 ? n : elem.src.length));
+            }
+            else {
+                setTimeout(waiturl(elem), 500);
+            }
         }
     }
     
@@ -184,4 +199,8 @@ function findImages(elem){
             findImages(elem.children[j]);
         }
     }
+}
+
+function waiturl(elem) {
+    pictures.push(elem.src);
 }
