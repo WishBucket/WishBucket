@@ -27,5 +27,9 @@ https://github.com/WishBucket/WishBucket
 # Installation Intstructions:
 In Chrome, navigate to chrome://extensions and select Developer Mode. Click Load Unpacked Extension... and select the folder containing the extension.
 
+OR
+
+Use the provided WishBucket.crx file in the "NonDevInstaller" folder to install a packaged extension. Does not require developer mode. 
+
 # Usage:
 Navigate to a webpage containing a product you would like to purchase in the future. Click the WishBucket icon next to your URL bar. Edit any of the information you would like to and click Add To Bucket. The product will now be viewable whenever you click the WishBucket icon.
