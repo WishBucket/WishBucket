@@ -174,6 +174,11 @@ function render () {
     renderBuckets();
     renderProducts(arrBucket[curBucket].products);
   }
+  else{
+    var item = document.createElement("div");
+    item.innerHTML = "Welcome! Get started by making a Bucket!";
+    $("#product-list").append('<div class="row"><div class="col s12">"Welcome! Get started by making a Bucket!"</div></div>');
+  }
 }
 
 function renderProducts(productList){
