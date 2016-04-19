@@ -157,7 +157,7 @@ else if(link.search(/[a-z]*\.bestbuy\.com/i) > -1){
     price = document.getElementsByClassName('item-price')[0].innerText;
     quant = 1;
     
-    findImages(document.getElementsByClassName('image-gallery-thumbs-slides-inner')[0]);
+    findImages(document.getElementsByClassName('carousel-indicators')[0]);
 }
 
 // If the domain is not optomized
