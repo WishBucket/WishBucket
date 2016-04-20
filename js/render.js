@@ -203,7 +203,7 @@ function renderProducts(productList){
   } else {
     var item = document.createElement("div");
     item.innerHTML = "This bucket is empty. Add a product by clicking on the + to the right.";
-    $("#product-list").append('<div class="row"><div class="col s12">"This bucket is empty. Add a product by clicking on the red button to the right."</div></div>');
+    $("#product-list").append('<div class="row"><div class="col s12">There are no items in your current bucket.</div></div>');
   }
   $(".product-title").click(function() {
       chrome.tabs.update({
